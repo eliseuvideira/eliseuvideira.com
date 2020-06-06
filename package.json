@@ -13,15 +13,22 @@
     "gatsby-plugin-manifest": "^2.4.9",
     "gatsby-plugin-offline": "^3.2.8",
     "gatsby-plugin-react-helmet": "^3.3.2",
+    "gatsby-plugin-react-svg": "^3.0.0",
     "gatsby-plugin-sharp": "^2.6.9",
     "gatsby-source-filesystem": "^2.3.8",
     "gatsby-transformer-sharp": "^2.5.3",
+    "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-helmet": "^6.0.0"
+    "react-helmet": "^6.0.0",
+    "styled-components": "^5.1.1",
+    "typeface-fira-mono": "^0.0.72",
+    "typeface-merriweather": "^0.0.72",
+    "typeface-montserrat": "^0.0.75"
   },
   "devDependencies": {
+    "@types/styled-components": "^5.1.0",
     "prettier": "2.0.5"
   },
   "keywords": [
