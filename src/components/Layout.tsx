@@ -1,23 +1,34 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { Header } from './Header';
 import styled from 'styled-components';
+import Footer from './Footer';
 
 const Wrapper = styled.div`
+  max-width: 960px;
+  height: 100%;
+  margin: 0 auto;
+  text-align: center;
+`;
+
+const Content = styled.div`
+  height: calc(100% - 50px);
   display: flex;
-  justify-content: center;
 `;
 
 const Container = styled.div`
   width: 100%;
-  max-width: 960px;
+  height: 100%;
   padding: 0 15px;
 `;
 
-export const Layout: React.FC = () => (
+export const Layout: React.FC<PropsWithChildren<{}>> = ({ children }) => (
   <Wrapper>
-    <Container>
-      <Header title="eliseuvideira" />
-      <footer>Teste</footer>
-    </Container>
+    <Content>
+      <Container>
+        <Header title="eliseuvideira" />
+        {children}
+        <Footer />
+      </Container>
+    </Content>
   </Wrapper>
 );
