@@ -29,6 +29,9 @@ const lightTheme = {
     postInfo: {
       color: '#4a5568',
     },
+    paragraph: {
+      color: '#1a202c'
+    }
   },
 };
 
@@ -60,6 +63,9 @@ const darkTheme = {
     postInfo: {
       color: '#dbdbdb',
     },
+    paragraph: {
+      color: '#fcfaff'
+    }
   },
 };
 

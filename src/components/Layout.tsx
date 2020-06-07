@@ -31,15 +31,13 @@ const MainContent = styled.div`
 `;
 
 export const Layout: React.FC<PropsWithChildren<{}>> = ({ children }) => {
-  const [dark, setDark] = useState(true);
-
-  useEffect(() => {
-    const value = localStorage.getItem('dark-mode');
-    setDark(value != null ? !!value : true);
-  }, []);
+  const value = localStorage.getItem('dark-mode');
+  const [dark, setDark] = useState(value != null ? !!value : true);
 
   const onToggleDark = () => {
-    setDark(!dark);
+    const newDark = !dark;
+    setDark(newDark);
+    localStorage.setItem('dark-mode', newDark ? 'true' : '');
   };
 
   return (

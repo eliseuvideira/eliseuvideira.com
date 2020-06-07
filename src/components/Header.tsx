@@ -22,8 +22,7 @@ const Title = styled.span`
 const Icon = styled.span`
   color: ${({ theme }: any) => theme.logo.color};
   width: 30px;
-
-  transition-property: color;
+  transition-property: all;
   transition-duration: 0.1s;
   transition-timing-function: ease-in;
 `;

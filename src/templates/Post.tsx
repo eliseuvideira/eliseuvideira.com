@@ -4,33 +4,46 @@ import { Layout } from '../components/Layout';
 import styled from 'styled-components';
 
 const PostTitle = styled.div`
+  margin: 30px 0 0;
   font-family: Montserrat;
   width: 100%;
   h1 {
-    color: #1a202c;
+    margin: 0;
+    color: ${({ theme }) => theme.post.postTitle.color};
     font-size: 30px;
     font-weight: bold;
     line-height: 40px;
   }
   div {
-    color: #4a5568;
+    margin: 5px 0 0;
+    color: ${({ theme }) => theme.post.postInfo.color};
     display: flex;
     justify-content: space-between;
   }
 `;
 
 const PostContent = styled.article`
-  color: #1a202c;
+  color: ${({ theme }) => theme.post.paragraph.color};
   font-family: Montserrat;
+  margin-top: 60px;
 `;
 
 const PostNav = styled.ul`
+  margin-top: 60px;
+  color: ${({ theme }) => theme.post.postInfo.color};
   padding: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   list-style-type: none;
   font-family: Montserrat;
+  a,
+  a:visited,
+  a:hover,
+  a:active {
+    color: inherit;
+    text-decoration: none;
+  }
 `;
 
 const Post = ({
