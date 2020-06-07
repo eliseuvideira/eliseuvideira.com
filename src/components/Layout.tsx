@@ -2,6 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import { Header } from './Header';
 import styled from 'styled-components';
 import Footer from './Footer';
+import { Theme } from './Theme';
 
 const Wrapper = styled.div`
   max-width: 960px;
@@ -10,7 +11,7 @@ const Wrapper = styled.div`
 `;
 
 const Content = styled.div`
-  height: calc(100% - 50px);
+  height: 100%;
   display: flex;
 `;
 
@@ -21,13 +22,15 @@ const Container = styled.div`
 `;
 
 export const Layout: React.FC<PropsWithChildren<{}>> = ({ children }) => (
-  <Wrapper>
-    <Content>
-      <Container>
-        <Header title="eliseuvideira" />
-        {children}
-        <Footer />
-      </Container>
-    </Content>
-  </Wrapper>
+  <Theme>
+    <Wrapper>
+      <Content>
+        <Container>
+          <Header title="eliseuvideira" />
+          {children}
+          <Footer />
+        </Container>
+      </Content>
+    </Wrapper>
+  </Theme>
 );

@@ -48,7 +48,7 @@ const Post = ({
       <h1>{title}</h1>
       <div>
         <span>
-          {date} -- {tags.join(', ')}
+          {date} — {tags.join(', ')}
         </span>
         <span>{timeToRead} min read</span>
       </div>

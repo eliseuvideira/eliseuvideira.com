@@ -10,9 +10,25 @@ const PostList = styled.ul`
 
 const PostListItem = styled.li``;
 
-const PostTitle = styled.h1``;
+const PostTitle = styled.h1`
+  font-family: Merriweather;
+  font-size: 30px;
+  line-heigth: 40px;
+  a,
+  a:visited,
+  a:hover,
+  a:active {
+    color: ${({ theme }) => theme.posts.postTitle.color};
+    text-decoration: none;
+  }
+`;
 
-const PostInfo = styled.span``;
+const PostInfo = styled.span`
+  color: ${({ theme }) => theme.posts.postInfo.color};
+  font-family: Merriweather;
+  font-size: 14px;
+  line-heigth: 20px;
+`;
 
 export const Posts: React.FC<{
   posts: any[];
@@ -26,11 +42,11 @@ export const Posts: React.FC<{
         },
       }) => (
         <PostListItem key={slug}>
-          <Link to={`/posts${slug}`}>
-            <PostTitle>{title}</PostTitle>
-          </Link>
+          <PostTitle>
+            <Link to={`/posts${slug}`}>{title}</Link>
+          </PostTitle>
           <PostInfo>
-            {date} -- {tags.join(', ')}
+            {date} — {tags.join(', ')}
           </PostInfo>
         </PostListItem>
       ),

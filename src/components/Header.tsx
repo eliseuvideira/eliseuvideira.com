@@ -13,15 +13,21 @@ const Title = styled.span`
   font-size: 25px;
   line-height: 30px;
   cursor: pointer;
+  color: ${({ theme }: any) => theme.logo.color};
+`;
+
+const Icon = styled.span`
+  color: ${({ theme }: any) => theme.logo.color};
+  width: 30px;
 `;
 
 export const Header: React.FC<{ title: string }> = ({ title }) => (
   <>
     <StyledHeader>
       <Title onClick={() => navigate('/')}>{title}</Title>
-      <div style={{ width: '30px' }}>
+      <Icon>
         <SunIcon />
-      </div>
+      </Icon>
     </StyledHeader>
     <hr />
   </>
