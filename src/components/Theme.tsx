@@ -10,11 +10,11 @@ const lightTheme = {
 };
 
 const darkTheme = {
-  text: '#dbdbdb',
-  textMuted: '#fcfaff',
-  background: '#635e69',
-  logo: '#fcfaff',
-  title: '#fcfaff',
+  text: '#79cd75',
+  textMuted: '#dcdcaa',
+  background: '#252526',
+  logo: '#f7fdf7',
+  title: '#2ca72c',
 };
 
 const GlobalStyles = createGlobalStyle`
