@@ -23,6 +23,7 @@ const Icon = styled.span`
   transition-property: all;
   transition-duration: 0.3s;
   transition-timing-function: linear;
+  cursor: pointer;
 `;
 
 export const Header: React.FC<{
@@ -30,7 +31,7 @@ export const Header: React.FC<{
   dark: boolean;
   onToggleDark: () => void;
 }> = ({ title, dark, onToggleDark }) => (
-  <span className="logo">
+  <div className="logo">
     <StyledHeader>
       <Title onClick={() => navigate('/')}>{title}</Title>
       <Icon onClick={onToggleDark}>
@@ -38,5 +39,5 @@ export const Header: React.FC<{
         {dark ? <SunIcon /> : <MoonIcon />}
       </Icon>
     </StyledHeader>
-  </span>
+  </div>
 );

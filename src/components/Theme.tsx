@@ -43,19 +43,19 @@ const GlobalStyles = createGlobalStyle`
   }
 
   .dark-mode .text {
-    color: #79cd75;
+    color: #cfd8dc;
   }
 
   .dark-mode .text-muted {
-    color: #dcdcaa;
+    color: #b0bec5;
   }
 
   .dark-mode .logo {
-    color: #f7fdf7;
+    color: #fafafa;
   }
 
   .dark-mode .title {
-    color: #2ca72c;
+    color: #79cd75;
   }
 
   .light-mode {
