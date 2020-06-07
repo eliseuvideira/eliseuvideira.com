@@ -7,14 +7,14 @@ const Title = styled.div`
   width: 100%;
   h1 {
     margin: 0;
-    color: ${({ theme }) => theme.posts.postTitle.color};
+    color: ${({ theme }) => theme.title};
     font-size: 30px;
     font-weight: bold;
     line-height: 40px;
   }
   div {
     margin: 5px 0 0;
-    color: ${({ theme }) => theme.posts.postInfo.color};
+    color: ${({ theme }) => theme.textMuted};
     display: flex;
     justify-content: space-between;
   }
@@ -22,7 +22,7 @@ const Title = styled.div`
   a:visited,
   a:hover,
   a:active {
-    color: ${({ theme }) => theme.posts.postTitle.color};
+    color: ${({ theme }) => theme.title};
     text-decoration: none;
   }
 `;

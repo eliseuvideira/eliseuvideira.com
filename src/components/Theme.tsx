@@ -2,71 +2,19 @@ import React, { PropsWithChildren } from 'react';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 
 const lightTheme = {
-  html: {
-    backgroundColor: '#fbfbfb',
-  },
-  logo: {
-    color: '#36313d',
-  },
-  footer: {
-    color: '#36313d',
-  },
-  divider: {
-    color: '#696076',
-  },
-  posts: {
-    postTitle: {
-      color: '#007acc',
-    },
-    postInfo: {
-      color: '#696076',
-    },
-  },
-  post: {
-    postTitle: {
-      color: '#232129',
-    },
-    postInfo: {
-      color: '#4a5568',
-    },
-    paragraph: {
-      color: '#1a202c',
-    },
-  },
+  text: '#1a202c',
+  textMuted: '#696076',
+  background: '#fbfbfb',
+  logo: '#36313d',
+  title: '#007acc',
 };
 
 const darkTheme = {
-  html: {
-    backgroundColor: '#635e69',
-  },
-  logo: {
-    color: '#fcfaff',
-  },
-  footer: {
-    color: '#dbdbdb',
-  },
-  divider: {
-    color: '#9c9c9c',
-  },
-  posts: {
-    postTitle: {
-      color: '#fcfaff',
-    },
-    postInfo: {
-      color: '#dbdbdb',
-    },
-  },
-  post: {
-    postTitle: {
-      color: '#fcfaff',
-    },
-    postInfo: {
-      color: '#dbdbdb',
-    },
-    paragraph: {
-      color: '#fcfaff',
-    },
-  },
+  text: '#dbdbdb',
+  textMuted: '#fcfaff',
+  background: '#635e69',
+  logo: '#fcfaff',
+  title: '#fcfaff',
 };
 
 const GlobalStyles = createGlobalStyle`
@@ -81,7 +29,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   html {
-    background-color: ${({ theme }: any) => theme.html.backgroundColor};
+    background-color: ${({ theme }: any) => theme.background};
     font-family: Montserrat;
   }
 

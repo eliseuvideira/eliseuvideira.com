@@ -5,13 +5,13 @@ import styled from 'styled-components';
 import { PostTitle } from '../components/Posts/PostTitle';
 
 const PostContent = styled.article`
-  color: ${({ theme }) => theme.post.paragraph.color};
+  color: ${({ theme }) => theme.text};
   margin-top: 60px;
 `;
 
 const PostNav = styled.ul`
   margin-top: 60px;
-  color: ${({ theme }) => theme.post.postInfo.color};
+  color: ${({ theme }) => theme.textMuted};
   padding: 0;
   display: flex;
   justify-content: space-between;

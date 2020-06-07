@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Paragraph = styled.p`
-  color: ${({ theme }) => theme.footer.color};
+  color: ${({ theme }) => theme.textMuted};
   a,
   a:visited,
   a:hover,

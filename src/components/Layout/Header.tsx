@@ -16,11 +16,11 @@ const Title = styled.span`
   font-size: 25px;
   line-height: 30px;
   cursor: pointer;
-  color: ${({ theme }: any) => theme.logo.color};
+  color: ${({ theme }: any) => theme.logo};
 `;
 
 const Icon = styled.span`
-  color: ${({ theme }: any) => theme.logo.color};
+  color: ${({ theme }: any) => theme.logo};
   width: 30px;
   transition-property: all;
   transition-duration: 0.3s;
