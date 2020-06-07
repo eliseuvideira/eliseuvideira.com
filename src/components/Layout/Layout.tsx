@@ -1,8 +1,8 @@
-import React, { PropsWithChildren, useState, useEffect } from 'react';
+import React, { PropsWithChildren, useState } from 'react';
 import { Header } from './Header';
 import styled from 'styled-components';
 import Footer from './Footer';
-import { Theme } from './Theme';
+import { Theme } from '../Theme';
 
 const Wrapper = styled.div`
   max-width: 960px;

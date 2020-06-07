@@ -1,8 +1,8 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
-import { Layout } from '../components/Layout';
+import { Layout } from '../components/Layout/Layout';
 import styled from 'styled-components';
-import { PostTitle } from '../components/PostTitle';
+import { PostTitle } from '../components/Posts/PostTitle';
 
 const PostContent = styled.article`
   color: ${({ theme }) => theme.post.paragraph.color};
@@ -26,7 +26,23 @@ const PostNav = styled.ul`
   }
 `;
 
-const Post = ({
+interface PostProps {
+  html: string;
+  timeToRead: number;
+  frontmatter: {
+    title: string;
+    date: string;
+    tags: string[];
+  };
+  fields: {
+    slug: string;
+  };
+}
+
+const Post: React.FC<{
+  data: { markdownRemark: PostProps };
+  pageContext: { prev: PostProps | null; next: PostProps | null };
+}> = ({
   data: {
     markdownRemark: {
       html,

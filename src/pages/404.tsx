@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Layout } from '../components/Layout';
+import { Layout } from '../components/Layout/Layout';
 
-const NotFoundPage = () => {
+const NotFoundPage: React.FC = () => {
   return (
     <Layout>
       <h1>Not Found</h1>

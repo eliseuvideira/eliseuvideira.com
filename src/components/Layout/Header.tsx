@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import SunIcon from '../images/sun-solid.svg';
-import MoonIcon from '../images/moon-solid.svg';
+import SunIcon from '../../images/sun-solid.svg';
+import MoonIcon from '../../images/moon-solid.svg';
 import { navigate } from 'gatsby';
 
 const StyledHeader = styled.header`
