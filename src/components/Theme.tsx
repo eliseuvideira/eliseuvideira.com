@@ -30,8 +30,8 @@ const lightTheme = {
       color: '#4a5568',
     },
     paragraph: {
-      color: '#1a202c'
-    }
+      color: '#1a202c',
+    },
   },
 };
 
@@ -64,8 +64,8 @@ const darkTheme = {
       color: '#dbdbdb',
     },
     paragraph: {
-      color: '#fcfaff'
-    }
+      color: '#fcfaff',
+    },
   },
 };
 
@@ -73,11 +73,20 @@ const GlobalStyles = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
     box-sizing: border-box;
   }
 
   html {
     background-color: ${({ theme }: any) => theme.html.backgroundColor};
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  ol, ul {
+    list-style: none;
   }
 
   html, body, body > div, body > div > div {
