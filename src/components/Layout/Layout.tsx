@@ -23,7 +23,7 @@ const Container = styled.div`
 `;
 
 const Spacing = styled.div`
-  heigth: 80px;
+  height: 80px;
 `;
 
 const MainContent = styled.div`
