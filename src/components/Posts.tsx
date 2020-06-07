@@ -18,7 +18,6 @@ export const Posts: React.FC<{
   posts: any[];
 }> = ({ posts }) => (
   <PostList>
-    {console.log(posts)}
     {posts.map(
       ({
         node: {

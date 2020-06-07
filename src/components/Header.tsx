@@ -13,8 +13,6 @@ const Title = styled.span`
   line-height: 30px;
 `;
 
-console.log(SunIcon);
-
 export const Header: React.FC<{ title: string }> = ({ title }) => (
   <>
     <StyledHeader>
