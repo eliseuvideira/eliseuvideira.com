@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
-import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
 
-const light = {
+const lightTheme = {
   html: {
     backgroundColor: '#fbfbfb',
   },
@@ -32,7 +32,7 @@ const light = {
   },
 };
 
-const dark = {
+const darkTheme = {
   html: {
     backgroundColor: '#635e69',
   },
@@ -71,12 +71,19 @@ const GlobalStyles = createGlobalStyle`
   }
 
   html {
-    background-color: ${({ theme }: any) => theme.html.backgroundColor}
+    background-color: ${({ theme }: any) => theme.html.backgroundColor};
+  }
+
+  html, body, body > div, body > div > div {
+    height: 100%;
   }
   `;
 
-export const Theme: React.FC<PropsWithChildren<{}>> = ({ children }) => {
-  const theme = Math.random() > 0.5 ? light : dark;
+export const Theme: React.FC<PropsWithChildren<{ dark: boolean }>> = ({
+  children,
+  dark,
+}) => {
+  const theme = dark ? darkTheme : lightTheme;
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />

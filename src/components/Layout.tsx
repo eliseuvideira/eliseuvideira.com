@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, useState, useEffect } from 'react';
 import { Header } from './Header';
 import styled from 'styled-components';
 import Footer from './Footer';
@@ -21,16 +21,45 @@ const Container = styled.div`
   padding: 0 15px;
 `;
 
-export const Layout: React.FC<PropsWithChildren<{}>> = ({ children }) => (
-  <Theme>
-    <Wrapper>
-      <Content>
-        <Container>
-          <Header title="eliseuvideira" />
-          {children}
-          <Footer />
-        </Container>
-      </Content>
-    </Wrapper>
-  </Theme>
-);
+const Spacing = styled.div`
+  heigth: 80px;
+`;
+
+const MainContent = styled.div`
+  padding-top: 40px;
+  min-height: 100%;
+`;
+
+export const Layout: React.FC<PropsWithChildren<{}>> = ({ children }) => {
+  const [dark, setDark] = useState(true);
+
+  useEffect(() => {
+    const value = localStorage.getItem('dark-mode');
+    setDark(value != null ? !!value : true);
+  }, []);
+
+  const onToggleDark = () => {
+    setDark(!dark);
+  };
+
+  return (
+    <Theme dark={dark}>
+      <Wrapper>
+        <Content>
+          <Container>
+            <MainContent>
+              <Header
+                title="eliseuvideira"
+                dark={dark}
+                onToggleDark={onToggleDark}
+              />
+              {children}
+              <Spacing />
+            </MainContent>
+            <Footer />
+          </Container>
+        </Content>
+      </Wrapper>
+    </Theme>
+  );
+};

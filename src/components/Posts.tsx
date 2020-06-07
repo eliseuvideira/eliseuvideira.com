@@ -8,12 +8,16 @@ const PostList = styled.ul`
   margin: 0;
 `;
 
-const PostListItem = styled.li``;
+const PostListItem = styled.li`
+  margin-top: 30px;
+`;
 
 const PostTitle = styled.h1`
   font-family: Merriweather;
   font-size: 30px;
   line-heigth: 40px;
+  margin: 0;
+  width: 100%;
   a,
   a:visited,
   a:hover,
@@ -28,6 +32,9 @@ const PostInfo = styled.span`
   font-family: Merriweather;
   font-size: 14px;
   line-heigth: 20px;
+  width: 100%;
+  display: block;
+  margin-top: 5px;
 `;
 
 export const Posts: React.FC<{
