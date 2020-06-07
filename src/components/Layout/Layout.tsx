@@ -35,7 +35,6 @@ export const Layout: React.FC<PropsWithChildren<{}>> = ({ children }) => {
   const darkMode = useDarkMode(true);
 
   const onToggleDark = () => {
-    console.log(darkMode);
     if (darkMode.value) {
       darkMode.disable();
     } else {

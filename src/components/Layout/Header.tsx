@@ -35,7 +35,6 @@ export const Header: React.FC<{
     <StyledHeader>
       <Title onClick={() => navigate('/')}>{title}</Title>
       <Icon onClick={onToggleDark}>
-        {console.log(dark)}
         {dark ? <SunIcon /> : <MoonIcon />}
       </Icon>
     </StyledHeader>
