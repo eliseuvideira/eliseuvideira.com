@@ -29,7 +29,7 @@ const Footer: React.FC = () => (
     <div className="text-muted">
       <Paragraph>
         &copy; {new Date().getFullYear()}, Built with{' '}
-        <a href="https://www.gatsbyjs.org" target="_blank">
+        <a href="https://www.gatsbyjs.org" target="_blank" rel="noopener">
           Gatsby
         </a>
       </Paragraph>
