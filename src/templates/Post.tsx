@@ -1,6 +1,37 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
 import { Layout } from '../components/Layout';
+import styled from 'styled-components';
+
+const PostTitle = styled.div`
+  font-family: Montserrat;
+  width: 100%;
+  h1 {
+    color: #1a202c;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 40px;
+  }
+  div {
+    color: #4a5568;
+    display: flex;
+    justify-content: space-between;
+  }
+`;
+
+const PostContent = styled.article`
+  color: #1a202c;
+  font-family: Montserrat;
+`;
+
+const PostNav = styled.ul`
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style-type: none;
+  font-family: Montserrat;
+`;
 
 const Post = ({
   data: {
@@ -13,30 +44,32 @@ const Post = ({
   pageContext: { prev, next },
 }) => (
   <Layout>
-    <div>
-      <div>{title}</div>
+    <PostTitle>
+      <h1>{title}</h1>
       <div>
-        {date} -- {tags.join(', ')}
+        <span>
+          {date} -- {tags.join(', ')}
+        </span>
+        <span>{timeToRead} min read</span>
       </div>
-      <div>{timeToRead} min read</div>
-      <article dangerouslySetInnerHTML={{ __html: html }}></article>
-    </div>
-    <ul>
-      {prev && (
-        <li>
+    </PostTitle>
+    <PostContent dangerouslySetInnerHTML={{ __html: html }} />
+    <PostNav>
+      <li>
+        {prev && (
           <Link to={`/posts${prev.fields.slug}`}>
             ← {prev.frontmatter.title}
           </Link>
-        </li>
-      )}
-      {next && (
-        <li>
+        )}
+      </li>
+      <li>
+        {next && (
           <Link to={`/posts${next.fields.slug}`}>
             {next.frontmatter.title} →
           </Link>
-        </li>
-      )}
-    </ul>
+        )}
+      </li>
+    </PostNav>
   </Layout>
 );
 
