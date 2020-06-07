@@ -75,18 +75,23 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     border: 0;
     font-size: 100%;
-    font: inherit;
+    font-family: inherit;
     vertical-align: baseline;
     box-sizing: border-box;
   }
 
   html {
     background-color: ${({ theme }: any) => theme.html.backgroundColor};
-    font-family: 'Montserrat', sans-serif;
+    font-family: Montserrat;
   }
 
   ol, ul {
     list-style: none;
+  }
+
+  article, aside, details, figcaption, figure, 
+  footer, header, hgroup, menu, nav, section {
+    display: block;
   }
 
   html, body, body > div, body > div > div {
