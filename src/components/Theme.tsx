@@ -1,21 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import { ThemeProvider, createGlobalStyle } from 'styled-components';
-
-const lightTheme = {
-  text: '#1a202c',
-  textMuted: '#696076',
-  background: '#fbfbfb',
-  logo: '#36313d',
-  title: '#007acc',
-};
-
-const darkTheme = {
-  text: '#79cd75',
-  textMuted: '#dcdcaa',
-  background: '#252526',
-  logo: '#f7fdf7',
-  title: '#2ca72c',
-};
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
   * {
@@ -29,7 +13,6 @@ const GlobalStyles = createGlobalStyle`
   }
 
   html {
-    background-color: ${({ theme }: any) => theme.background};
     font-family: Montserrat;
   }
 
@@ -46,17 +29,61 @@ const GlobalStyles = createGlobalStyle`
     height: 100%;
     min-width: 350px;
   }
+
+  a,
+  a:visited,
+  a:hover,
+  a:active {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .dark-mode {
+    background-color: #252526;
+  }
+
+  .dark-mode .text {
+    color: #79cd75;
+  }
+
+  .dark-mode .text-muted {
+    color: #dcdcaa;
+  }
+
+  .dark-mode .logo {
+    color: #f7fdf7;
+  }
+
+  .dark-mode .title {
+    color: #2ca72c;
+  }
+
+  .light-mode {
+    background-color: #fbfbfb;
+  }
+
+  .light-mode .text {
+    color: #1a202c;
+  }
+
+  .light-mode .text-muted {
+    color: #696076;
+  }
+
+  .light-mode .logo {
+    color: #36313d;
+  }
+
+  .light-mode .title {
+    color: #007acc;
+  }
   `;
 
-export const Theme: React.FC<PropsWithChildren<{ dark: boolean }>> = ({
-  children,
-  dark,
-}) => {
-  const theme = dark ? darkTheme : lightTheme;
+export const Theme: React.FC<PropsWithChildren<{}>> = ({ children }) => {
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <GlobalStyles />
       {children}
-    </ThemeProvider>
+    </>
   );
 };

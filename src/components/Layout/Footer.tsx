@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Paragraph = styled.p`
-  color: ${({ theme }) => theme.textMuted};
   a,
   a:visited,
   a:hover,
@@ -27,8 +26,7 @@ const StyledFooter = styled.footer`
 
 const Footer: React.FC = () => (
   <StyledFooter>
-    <hr />
-    <div>
+    <div className="text-muted">
       <Paragraph>
         &copy; {new Date().getFullYear()}, Built with{' '}
         <a href="https://www.gatsbyjs.org" target="_blank">

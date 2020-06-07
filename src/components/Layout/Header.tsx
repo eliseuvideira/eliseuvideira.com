@@ -16,11 +16,9 @@ const Title = styled.span`
   font-size: 25px;
   line-height: 30px;
   cursor: pointer;
-  color: ${({ theme }: any) => theme.logo};
 `;
 
 const Icon = styled.span`
-  color: ${({ theme }: any) => theme.logo};
   width: 30px;
   transition-property: all;
   transition-duration: 0.3s;
@@ -32,11 +30,13 @@ export const Header: React.FC<{
   dark: boolean;
   onToggleDark: () => void;
 }> = ({ title, dark, onToggleDark }) => (
-  <>
+  <span className="logo">
     <StyledHeader>
       <Title onClick={() => navigate('/')}>{title}</Title>
-      <Icon onClick={onToggleDark}>{dark ? <SunIcon /> : <MoonIcon />}</Icon>
+      <Icon onClick={onToggleDark}>
+        {console.log(dark)}
+        {dark ? <SunIcon /> : <MoonIcon />}
+      </Icon>
     </StyledHeader>
-    <hr />
-  </>
+  </span>
 );

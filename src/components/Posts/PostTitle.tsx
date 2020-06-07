@@ -7,23 +7,14 @@ const Title = styled.div`
   width: 100%;
   h1 {
     margin: 0;
-    color: ${({ theme }) => theme.title};
     font-size: 30px;
     font-weight: bold;
     line-height: 40px;
   }
   div {
     margin: 5px 0 0;
-    color: ${({ theme }) => theme.textMuted};
     display: flex;
     justify-content: space-between;
-  }
-  a,
-  a:visited,
-  a:hover,
-  a:active {
-    color: ${({ theme }) => theme.title};
-    text-decoration: none;
   }
 `;
 
@@ -35,8 +26,8 @@ export const PostTitle: React.FC<{
   timeToRead: number;
 }> = ({ to, title, date, tags, timeToRead }) => (
   <Title>
-    <h1>{to ? <Link to={to}>{title}</Link> : title}</h1>
-    <div>
+    <h1 className="title">{to ? <Link to={to}>{title}</Link> : title}</h1>
+    <div className="text-muted">
       <span>
         {date} — {tags.join(', ')}
       </span>

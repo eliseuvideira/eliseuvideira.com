@@ -1,8 +1,9 @@
-import React, { PropsWithChildren, useState } from 'react';
+import React, { PropsWithChildren } from 'react';
 import { Header } from './Header';
 import styled from 'styled-components';
 import Footer from './Footer';
 import { Theme } from '../Theme';
+import useDarkMode from 'use-dark-mode';
 
 const Wrapper = styled.div`
   max-width: 960px;
@@ -31,24 +32,26 @@ const MainContent = styled.div`
 `;
 
 export const Layout: React.FC<PropsWithChildren<{}>> = ({ children }) => {
-  const value = localStorage.getItem('dark-mode');
-  const [dark, setDark] = useState(value != null ? !!value : true);
+  const darkMode = useDarkMode(true);
 
   const onToggleDark = () => {
-    const newDark = !dark;
-    setDark(newDark);
-    localStorage.setItem('dark-mode', newDark ? 'true' : '');
+    console.log(darkMode);
+    if (darkMode.value) {
+      darkMode.disable();
+    } else {
+      darkMode.enable();
+    }
   };
 
   return (
-    <Theme dark={dark}>
+    <Theme>
       <Wrapper>
         <Content>
           <Container>
             <MainContent>
               <Header
+                dark={darkMode.value}
                 title="eliseuvideira"
-                dark={dark}
                 onToggleDark={onToggleDark}
               />
               {children}

@@ -5,26 +5,16 @@ import styled from 'styled-components';
 import { PostTitle } from '../components/Posts/PostTitle';
 import { Seo } from '../components/Seo';
 
-const PostContent = styled.article`
-  color: ${({ theme }) => theme.text};
+const PostContent = styled.div`
   margin-top: 60px;
 `;
 
 const PostNav = styled.ul`
   margin-top: 60px;
-  color: ${({ theme }) => theme.textMuted};
   padding: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  list-style-type: none;
-  a,
-  a:visited,
-  a:hover,
-  a:active {
-    color: inherit;
-    text-decoration: none;
-  }
 `;
 
 interface PostProps {
@@ -66,21 +56,27 @@ const Post: React.FC<{
       url={`/posts${slug}`}
     />
     <PostTitle title={title} date={date} tags={tags} timeToRead={timeToRead} />
-    <PostContent dangerouslySetInnerHTML={{ __html: html }} />
+    <PostContent>
+      <article className="text" dangerouslySetInnerHTML={{ __html: html }} />
+    </PostContent>
     <PostNav>
       <li>
-        {prev && (
-          <Link to={`/posts${prev.fields.slug}`}>
-            ← {prev.frontmatter.title}
-          </Link>
-        )}
+        <span className="text-muted">
+          {prev && (
+            <Link to={`/posts${prev.fields.slug}`}>
+              ← {prev.frontmatter.title}
+            </Link>
+          )}
+        </span>
       </li>
       <li>
-        {next && (
-          <Link to={`/posts${next.fields.slug}`}>
-            {next.frontmatter.title} →
-          </Link>
-        )}
+        <span className="text-muted">
+          {next && (
+            <Link to={`/posts${next.fields.slug}`}>
+              {next.frontmatter.title} →
+            </Link>
+          )}
+        </span>
       </li>
     </PostNav>
   </Layout>
