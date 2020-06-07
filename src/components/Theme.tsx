@@ -44,6 +44,7 @@ const GlobalStyles = createGlobalStyle`
 
   html, body, body > div, body > div > div {
     height: 100%;
+    min-width: 350px;
   }
   `;
 
