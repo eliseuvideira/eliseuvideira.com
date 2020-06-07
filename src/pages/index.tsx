@@ -2,6 +2,7 @@ import React from 'react';
 import { Layout } from '../components/Layout/Layout';
 import { graphql } from 'gatsby';
 import { Posts } from '../components/Posts/Posts';
+import { Seo } from '../components/Seo';
 
 const Index: React.FC<{ data: { allMarkdownRemark: { edges: any[] } } }> = ({
   data: {
@@ -9,6 +10,20 @@ const Index: React.FC<{ data: { allMarkdownRemark: { edges: any[] } } }> = ({
   },
 }) => (
   <Layout>
+    <Seo
+      title="eliseuvideira"
+      description="Eliseu Videira's blog site where he writes everything about javascript and typescript"
+      keywords={[
+        'eliseuvideira',
+        'Eliseu Videira',
+        'javascript',
+        'typescript',
+        'blog',
+        'react',
+        'nodejs',
+      ]}
+      url="/"
+    />
     <Posts posts={posts} />
   </Layout>
 );

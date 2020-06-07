@@ -3,6 +3,7 @@ import { graphql, Link } from 'gatsby';
 import { Layout } from '../components/Layout/Layout';
 import styled from 'styled-components';
 import { PostTitle } from '../components/Posts/PostTitle';
+import { Seo } from '../components/Seo';
 
 const PostContent = styled.article`
   color: ${({ theme }) => theme.text};
@@ -31,13 +32,17 @@ interface PostProps {
   timeToRead: number;
   frontmatter: {
     title: string;
+    description: string;
     date: string;
     tags: string[];
+    keywords: string[];
   };
   fields: {
     slug: string;
   };
 }
+
+const unique = (arr: string[]): string[] => [...(new Set(arr) as any)];
 
 const Post: React.FC<{
   data: { markdownRemark: PostProps };
@@ -47,12 +52,19 @@ const Post: React.FC<{
     markdownRemark: {
       html,
       timeToRead,
-      frontmatter: { title, date, tags },
+      frontmatter: { title, description, date, tags, keywords },
+      fields: { slug },
     },
   },
   pageContext: { prev, next },
 }) => (
   <Layout>
+    <Seo
+      title={title}
+      description={description}
+      keywords={unique(keywords.concat(tags))}
+      url={`/posts${slug}`}
+    />
     <PostTitle title={title} date={date} tags={tags} timeToRead={timeToRead} />
     <PostContent dangerouslySetInnerHTML={{ __html: html }} />
     <PostNav>
@@ -85,6 +97,11 @@ export const query = graphql`
         title
         date(fromNow: true)
         tags
+        description
+        keywords
+      }
+      fields {
+        slug
       }
     }
   }
