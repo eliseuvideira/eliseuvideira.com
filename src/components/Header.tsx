@@ -23,8 +23,8 @@ const Icon = styled.span`
   color: ${({ theme }: any) => theme.logo.color};
   width: 30px;
   transition-property: all;
-  transition-duration: 0.1s;
-  transition-timing-function: ease-in;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
 `;
 
 export const Header: React.FC<{
