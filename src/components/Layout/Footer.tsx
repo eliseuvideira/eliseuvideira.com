@@ -25,7 +25,7 @@ const StyledFooter = styled.footer`
 `;
 
 const Footer: React.FC = () => (
-  <StyledFooter>
+  <StyledFooter style={{ height: '80px' }}>
     <div className="text-muted">
       <Paragraph>
         &copy; {new Date().getFullYear()}, Built with{' '}

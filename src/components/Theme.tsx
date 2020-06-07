@@ -13,7 +13,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   html {
-    font-family: Montserrat;
+    font-family: Montserrat, sans-serif;
   }
 
   ol, ul {

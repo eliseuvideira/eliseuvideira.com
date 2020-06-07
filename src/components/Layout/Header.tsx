@@ -11,14 +11,14 @@ const StyledHeader = styled.header`
   align-items: center;
 `;
 
-const Title = styled.div`
+const Title = styled.span`
   font-family: 'Fira Mono', monospace;
   font-size: 25px;
   line-height: 30px;
   cursor: pointer;
 `;
 
-const Icon = styled.div`
+const Icon = styled.span`
   width: 30px;
   transition-property: all;
   transition-duration: 0.3s;
@@ -31,7 +31,7 @@ export const Header: React.FC<{
   dark: boolean;
   onToggleDark: () => void;
 }> = ({ title, dark, onToggleDark }) => (
-  <div className="logo">
+  <div className="logo" style={{ height: '30px' }}>
     <StyledHeader>
       <Title onClick={() => navigate('/')}>{title}</Title>
       <Icon onClick={onToggleDark}>
