@@ -7,6 +7,17 @@ import { Seo } from '../components/Seo';
 
 const PostContent = styled.div`
   margin-top: 60px;
+  font-size: 16px;
+  line-height: 1.5;
+
+  h2 {
+    font-size: 20px;
+    margin: 20px 0 5px;
+  }
+
+  p {
+    margin: 10px 0;
+  }
 `;
 
 const PostNav = styled.ul`
