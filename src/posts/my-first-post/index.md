@@ -1,9 +1,9 @@
 ---
 title: My First Post
 description: In this post I go through the steps required to develop and publish this own website
-date: 2020-06-07T20:40:41.751Z
-tags: [javascript, gatsby, react]
-keywords: [website, post, gatsby, build]
+date: 2020-06-08T01:13:40.648Z
+tags: [javascript, typescript, gatsby, react]
+keywords: [website, post, gatsby, build, react]
 ---
 
 Hi, this is my first post. :)
