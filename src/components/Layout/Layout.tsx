@@ -32,7 +32,7 @@ const MainContent = styled.div`
 `;
 
 export const Layout: React.FC<PropsWithChildren<{}>> = ({ children }) => {
-  const darkMode = useDarkMode(true);
+  const darkMode = useDarkMode(false);
 
   const onToggleDark = () => {
     if (darkMode.value) {
