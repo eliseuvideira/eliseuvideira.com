@@ -43,7 +43,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   .dark-mode .text {
-    color: #cfd8dc;
+    color: #e7ebed;
   }
 
   .dark-mode .text-muted {
