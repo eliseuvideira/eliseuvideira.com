@@ -9,7 +9,7 @@ export const Posts: React.FC<{
       ({
         node: {
           fields: { slug },
-          frontmatter: { title, date, tags },
+          frontmatter: { title, rawDate, date, tags },
           timeToRead,
         },
       }) => (
@@ -18,6 +18,7 @@ export const Posts: React.FC<{
           to={`/posts${slug}`}
           title={title}
           date={date}
+          rawDate={rawDate}
           tags={tags}
           timeToRead={timeToRead}
         />

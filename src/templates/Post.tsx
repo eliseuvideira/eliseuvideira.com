@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
-import { Layout } from '../components/Layout/Layout';
+import Layout from '../components/Layout/Layout';
 import styled from 'styled-components';
 import { PostTitle } from '../components/Posts/PostTitle';
 import Seo from '../components/Seo';
@@ -34,6 +34,7 @@ interface PostProps {
   frontmatter: {
     title: string;
     description: string;
+    rawDate: string;
     date: string;
     tags: string[];
     keywords: string[];
@@ -53,7 +54,7 @@ const Post: React.FC<{
     markdownRemark: {
       html,
       timeToRead,
-      frontmatter: { title, description, date, tags, keywords },
+      frontmatter: { title, description, rawDate, date, tags, keywords },
       fields: { slug },
     },
   },
@@ -66,7 +67,13 @@ const Post: React.FC<{
       keywords={unique(keywords.concat(tags))}
       url={`/posts${slug}`}
     />
-    <PostTitle title={title} date={date} tags={tags} timeToRead={timeToRead} />
+    <PostTitle
+      title={title}
+      rawDate={rawDate}
+      date={date}
+      tags={tags}
+      timeToRead={timeToRead}
+    />
     <PostContent>
       <article className="text" dangerouslySetInnerHTML={{ __html: html }} />
     </PostContent>
@@ -102,7 +109,8 @@ export const query = graphql`
       timeToRead
       frontmatter {
         title
-        date(fromNow: true)
+        rawDate: date
+        date(formatString: "MMMM Do, YYYY")
         tags
         description
         keywords

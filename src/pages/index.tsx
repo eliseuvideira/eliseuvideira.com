@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout } from '../components/Layout/Layout';
+import Layout from '../components/Layout/Layout';
 import { graphql } from 'gatsby';
 import { Posts } from '../components/Posts/Posts';
 import Seo from '../components/Seo';
@@ -37,7 +37,8 @@ export const query = graphql`
         node {
           frontmatter {
             title
-            date
+            rawDate: date
+            date(formatString: "MMMM Do, YYYY")
             tags
           }
           fields {

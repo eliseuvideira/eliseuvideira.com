@@ -23,6 +23,7 @@ const StyledHeader = styled.header`
     transition-duration: 0.3s;
     transition-timing-function: linear;
     cursor: pointer;
+    height: 30px;
   }
 `;
 
@@ -32,16 +33,16 @@ export const Header: React.FC<{
   onToggleDark: () => void;
 }> = ({ title, dark, onToggleDark }) => (
   <StyledHeader className="header" style={{ height: '45px' }}>
-    <div className="header-title" onClick={() => navigate('/')}>
+    <span className="header-title" onClick={() => navigate('/')}>
       {title}
-    </div>
-    <div className="header-icon" onClick={onToggleDark}>
+    </span>
+    <span className="header-icon" onClick={onToggleDark}>
       {dark ? (
         <SunIcon style={{ width: '30px', height: '30px' }} />
       ) : (
         <MoonIcon style={{ width: '30px', height: '30px' }} />
       )}
-    </div>
+    </span>
   </StyledHeader>
 );
 
