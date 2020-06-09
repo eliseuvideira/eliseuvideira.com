@@ -13,19 +13,28 @@ const GlobalStyles = createGlobalStyle`
   }
 
   html {
-    font-family: Montserrat, sans-serif;
+    font-family: "Open Sans", sans-serif;
   }
 
-  ol, ul {
+  ol,
+  ul {
     list-style: none;
   }
 
-  article, aside, details, figcaption, figure, 
-  footer, header, hgroup, menu, nav, section {
+  article,
+  aside,
+  footer,
+  header,
+  menu,
+  nav,
+  section {
     display: block;
   }
 
-  html, body, body > div, body > div > div {
+  html,
+  body,
+  body > div,
+  body > div > div {
     height: 100%;
     min-width: 350px;
   }

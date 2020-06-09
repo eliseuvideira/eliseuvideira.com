@@ -1,4 +1,4 @@
-import 'typeface-montserrat';
-import 'typeface-fira-mono';
 import 'normalize.css';
+import 'typeface-open-sans';
+import 'typeface-fira-mono';
 import 'prismjs/themes/prism-tomorrow.css';
