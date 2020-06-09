@@ -2,7 +2,7 @@ import React from 'react';
 import { Layout } from '../components/Layout/Layout';
 import { graphql } from 'gatsby';
 import { Posts } from '../components/Posts/Posts';
-import { Seo } from '../components/Seo';
+import Seo from '../components/Seo';
 
 const Index: React.FC<{ data: { allMarkdownRemark: { edges: any[] } } }> = ({
   data: {
@@ -12,7 +12,7 @@ const Index: React.FC<{ data: { allMarkdownRemark: { edges: any[] } } }> = ({
   <Layout>
     <Seo
       title="eliseuvideira"
-      description="Eliseu Videira's blog site where he writes everything about javascript and typescript"
+      description="Eliseu Videira's blog, everything about javascript"
       keywords={[
         'eliseuvideira',
         'Eliseu Videira',
@@ -37,7 +37,7 @@ export const query = graphql`
         node {
           frontmatter {
             title
-            date(fromNow: true)
+            date
             tags
           }
           fields {

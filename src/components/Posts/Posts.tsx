@@ -4,7 +4,7 @@ import { PostTitle } from './PostTitle';
 export const Posts: React.FC<{
   posts: any[];
 }> = ({ posts }) => (
-  <ul>
+  <div>
     {posts.map(
       ({
         node: {
@@ -13,16 +13,15 @@ export const Posts: React.FC<{
           timeToRead,
         },
       }) => (
-        <li key={slug}>
-          <PostTitle
-            to={`/posts${slug}`}
-            title={title}
-            date={date}
-            tags={tags}
-            timeToRead={timeToRead}
-          />
-        </li>
+        <PostTitle
+          key={slug}
+          to={`/posts${slug}`}
+          title={title}
+          date={date}
+          tags={tags}
+          timeToRead={timeToRead}
+        />
       ),
     )}
-  </ul>
+  </div>
 );

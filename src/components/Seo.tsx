@@ -2,13 +2,21 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
-export const Seo: React.FC<{
+interface SeoProps {
   title: string;
   description: string;
   keywords: string[];
   url: string;
   meta?: any[];
-}> = ({ title, description, keywords, url, meta }) => {
+}
+
+const Seo: React.FC<SeoProps> = ({
+  title,
+  description,
+  keywords,
+  url,
+  meta,
+}) => {
   const {
     site: {
       siteMetadata: { author, siteUrl },
@@ -43,3 +51,5 @@ export const Seo: React.FC<{
     </Helmet>
   );
 };
+
+export default Seo;
