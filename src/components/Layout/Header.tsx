@@ -9,21 +9,21 @@ const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
 
-const Title = styled.span`
-  font-family: 'Fira Mono', monospace;
-  font-size: 25px;
-  line-height: 30px;
-  cursor: pointer;
-`;
+  & .header-title {
+    display: inline-block;
+    font-family: monospace;
+    font-size: 25px;
+    line-height: 30px;
+    cursor: pointer;
+  }
 
-const Icon = styled.span`
-  width: 30px;
-  transition-property: all;
-  transition-duration: 0.3s;
-  transition-timing-function: linear;
-  cursor: pointer;
+  & .header-icon {
+    transition-property: all;
+    transition-duration: 0.3s;
+    transition-timing-function: linear;
+    cursor: pointer;
+  }
 `;
 
 export const Header: React.FC<{
@@ -31,16 +31,18 @@ export const Header: React.FC<{
   dark: boolean;
   onToggleDark: () => void;
 }> = ({ title, dark, onToggleDark }) => (
-  <div className="logo" style={{ height: '30px' }}>
-    <StyledHeader>
-      <Title onClick={() => navigate('/')}>{title}</Title>
-      <Icon onClick={onToggleDark}>
-        {dark ? (
-          <SunIcon style={{ width: '30px', height: '30px' }} />
-        ) : (
-          <MoonIcon style={{ width: '30px', height: '30px' }} />
-        )}
-      </Icon>
-    </StyledHeader>
-  </div>
+  <StyledHeader className="header" style={{ height: '45px' }}>
+    <div className="header-title" onClick={() => navigate('/')}>
+      {title}
+    </div>
+    <div className="header-icon" onClick={onToggleDark}>
+      {dark ? (
+        <SunIcon style={{ width: '30px', height: '30px' }} />
+      ) : (
+        <MoonIcon style={{ width: '30px', height: '30px' }} />
+      )}
+    </div>
+  </StyledHeader>
 );
+
+export default Header;

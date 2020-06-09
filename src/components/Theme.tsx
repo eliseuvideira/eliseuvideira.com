@@ -67,7 +67,7 @@ const GlobalStyles = createGlobalStyle`
     color: #d7dee2;
   }
 
-  .dark-mode .logo {
+  .dark-mode .header {
     color: #fafafa;
   }
 
@@ -87,7 +87,7 @@ const GlobalStyles = createGlobalStyle`
     color: #696076;
   }
 
-  .light-mode .logo {
+  .light-mode .header {
     color: #36313d;
   }
 
