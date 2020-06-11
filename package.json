@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Eliseu Videira <eliseuvideira1@gmail.com>",
   "dependencies": {
+    "babel-plugin-styled-components": "^1.10.7",
     "dotenv": "^8.2.0",
     "dotenv-safe": "^8.2.0",
     "gatsby": "^2.22.15",
@@ -15,6 +16,7 @@
     "gatsby-plugin-react-helmet": "^3.3.3",
     "gatsby-plugin-react-svg": "^3.0.0",
     "gatsby-plugin-sharp": "^2.6.9",
+    "gatsby-plugin-styled-components": "^3.3.4",
     "gatsby-plugin-typography": "^2.5.3",
     "gatsby-plugin-use-dark-mode": "^1.1.2",
     "gatsby-remark-prismjs": "^3.5.3",

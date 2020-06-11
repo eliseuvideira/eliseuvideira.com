@@ -34,7 +34,8 @@ const Layout: React.FC<PropsWithChildren<{}>> = ({ children }) => {
   };
 
   return (
-    <Theme>
+    <>
+      <Theme />
       <StyledLayout>
         <div className="layout-container">
           <Header
@@ -47,7 +48,7 @@ const Layout: React.FC<PropsWithChildren<{}>> = ({ children }) => {
         </div>
         <Footer />
       </StyledLayout>
-    </Theme>
+    </>
   );
 };
 
