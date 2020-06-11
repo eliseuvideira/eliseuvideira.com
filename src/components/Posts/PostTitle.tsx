@@ -7,15 +7,16 @@ const Title = styled.div`
   width: 100%;
   h1 {
     margin: 0;
-    font-size: 40px;
-    font-weight: bold;
-    line-height: 1.15;
   }
   div {
     font-family: 'Futura PT', sans-serif;
     margin: 15px 0 0;
     display: flex;
     justify-content: space-between;
+
+    span:first-child {
+      margin-right: 15px;
+    }
   }
 `;
 

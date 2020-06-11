@@ -2,31 +2,15 @@ import React, { PropsWithChildren } from 'react';
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
-  * {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font-family: inherit;
-    vertical-align: baseline;
-    box-sizing: border-box;
-  }
-
-  article,
-  aside,
-  footer,
-  header,
-  menu,
-  nav,
-  section {
-    display: block;
+  html {
+    height: 100%;
   }
 
   html,
   body,
   body > div,
   body > div > div {
-    height: 100%;
+    min-height: 100%;
     min-width: 350px;
   }
 
@@ -38,51 +22,72 @@ const GlobalStyles = createGlobalStyle`
     color: inherit;
   }
 
+  article a:hover {
+    text-decoration: underline;
+  }
+
   .dark-mode {
-    background-color: #252526;
-  }
+    background-color: ${({ theme }: any) => theme.dark.background};
 
-  .dark-mode .text {
-    color: #e7ebed;
-  }
+    & .text {
+      color: ${({ theme }: any) => theme.dark.text};
+    }
 
-  .dark-mode .text-muted {
-    color: #d7dee2;
-  }
+    & .text-muted {
+      color: ${({ theme }: any) => theme.dark.textMuted};
+    }
 
-  .dark-mode .header {
-    color: #fafafa;
-  }
+    & .header {
+      color: ${({ theme }: any) => theme.dark.secondary};
+    }
 
-  .dark-mode .title {
-    color: #79cd75;
+    & .title {
+      color: ${({ theme }: any) => theme.dark.primary};
+    }
   }
 
   .light-mode {
-    background-color: #fbfbfb;
-  }
+    background-color: ${({ theme }: any) => theme.light.background};
 
-  .light-mode .text {
-    color: #1a202c;
-  }
+    & .text {
+      color: ${({ theme }: any) => theme.light.text};
+    }
 
-  .light-mode .text-muted {
-    color: #696076;
-  }
+    & .text-muted {
+      color: ${({ theme }: any) => theme.light.textMuted};
+    }
 
-  .light-mode .header {
-    color: #36313d;
-  }
+    & .header {
+      color: ${({ theme }: any) => theme.light.secondary};
+    }
 
-  .light-mode .title {
-    color: #007acc;
+    & .title {
+      color: ${({ theme }: any) => theme.light.primary};
+    }
   }
   `;
+
+const theme = {
+  dark: {
+    background: '#252526',
+    primary: '#79cd75',
+    secondary: '#fafafa',
+    text: '#e7ebed',
+    textMuted: '#d7dee2',
+  },
+  light: {
+    background: '#fbfbfb',
+    primary: '#007acc',
+    secondary: '#36313d',
+    text: '#1a202c',
+    textMuted: '#696076',
+  },
+};
 
 const Theme: React.FC<PropsWithChildren<{}>> = ({ children }) => {
   return (
     <>
-      <GlobalStyles />
+      <GlobalStyles theme={theme} />
       {children}
     </>
   );
