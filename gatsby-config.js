@@ -15,13 +15,13 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
-        path: `${__dirname}/src/images`,
+        path: `${__dirname}/content/images`,
       },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/src/posts`,
+        path: `${__dirname}/content/posts`,
         name: 'posts',
       },
     },
@@ -49,7 +49,7 @@ module.exports = {
         background_color: '#312A3A',
         theme_color: '#FBFBFB',
         display: 'standalone',
-        icon: 'src/images/logo-icon.png',
+        icon: `${__dirname}/content/images/logo-icon.png`,
       },
     },
     'gatsby-plugin-offline',

@@ -1,7 +1,7 @@
 import React from 'react';
-import { PostTitle } from './PostTitle';
+import PostTitle from './PostTitle';
 
-export const Posts: React.FC<{
+const Posts: React.FC<{
   posts: any[];
 }> = ({ posts }) => (
   <div>
@@ -25,3 +25,5 @@ export const Posts: React.FC<{
     )}
   </div>
 );
+
+export default Posts;

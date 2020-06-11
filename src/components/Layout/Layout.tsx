@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import Header from './Header';
 import styled from 'styled-components';
 import Footer from './Footer';
-import { Theme } from '../Theme';
+import Theme from '../Theme';
 import useDarkMode from 'use-dark-mode';
 
 const StyledLayout = styled.div`

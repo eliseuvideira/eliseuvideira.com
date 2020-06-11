@@ -96,7 +96,7 @@ const GlobalStyles = createGlobalStyle`
   }
   `;
 
-export const Theme: React.FC<PropsWithChildren<{}>> = ({ children }) => {
+const Theme: React.FC<PropsWithChildren<{}>> = ({ children }) => {
   return (
     <>
       <GlobalStyles />
@@ -104,3 +104,5 @@ export const Theme: React.FC<PropsWithChildren<{}>> = ({ children }) => {
     </>
   );
 };
+
+export default Theme;

@@ -3,11 +3,11 @@ import styled from 'styled-components';
 
 const StyledFooter = styled.footer`
   display: flex;
+  align-items: center;
   position: relative;
   height: 80px;
   margin: -80px 0 0;
   padding: 40px 0 10px;
-  align-items: center;
   p {
     margin: 0;
   }

@@ -18,7 +18,7 @@ const Title = styled.div`
   }
 `;
 
-export const PostTitle: React.FC<{
+const PostTitle: React.FC<{
   to?: string;
   title: string;
   date: string;
@@ -35,3 +35,5 @@ export const PostTitle: React.FC<{
     </div>
   </Title>
 );
+
+export default PostTitle;

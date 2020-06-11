@@ -1,7 +1,7 @@
 import React from 'react';
-import Layout from '../components/Layout';
+import Layout from '../components/Layout/Layout';
 import { graphql } from 'gatsby';
-import { Posts } from '../components/Posts/Posts';
+import Posts from '../components/Posts/Posts';
 import Seo from '../components/Seo';
 
 const Index: React.FC<{ data: { allMarkdownRemark: { edges: any[] } } }> = ({
