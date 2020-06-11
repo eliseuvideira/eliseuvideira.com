@@ -12,6 +12,7 @@ const Title = styled.div`
     line-height: 1.15;
   }
   div {
+    font-family: 'Futura PT', sans-serif;
     margin: 15px 0 0;
     display: flex;
     justify-content: space-between;

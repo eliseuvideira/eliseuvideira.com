@@ -12,23 +12,6 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  body {
-    font-family: Verdana, sans-serif;
-  }
-
-  article {
-    font-family: Georgia, serif;
-  }
-
-  h1 {
-    font-weigth: bold;
-  }
-
-  ol,
-  ul {
-    list-style: none;
-  }
-
   article,
   aside,
   footer,

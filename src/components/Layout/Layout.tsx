@@ -10,7 +10,7 @@ const StyledLayout = styled.div`
   min-height: 100%;
   height: 100%;
   margin: 0 auto;
-  padding: 40px 15px 0;
+  padding: 40px 30px 0;
 
   & .layout-container {
     width: 100%;

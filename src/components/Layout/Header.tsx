@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import SunIcon from '../../../content/images/sun-solid.svg';
-import MoonIcon from '../../../content/images/moon-solid.svg';
 import { navigate } from 'gatsby';
+import { FiMoon as Moon, FiSun as Sun } from 'react-icons/fi';
 
 const StyledHeader = styled.header`
   height: 45px;
@@ -24,6 +23,16 @@ const StyledHeader = styled.header`
     transition-timing-function: linear;
     cursor: pointer;
     height: 30px;
+
+    .sun:hover {
+      animation: spin 1s linear infinite;
+    }
+  }
+
+  @keyframes spin {
+    100% {
+      transform: rotate(360deg);
+    }
   }
 `;
 
@@ -38,9 +47,9 @@ export const Header: React.FC<{
     </span>
     <span className="header-icon" onClick={onToggleDark}>
       {dark ? (
-        <SunIcon style={{ width: '30px', height: '30px' }} />
+        <Sun className="sun" style={{ width: '30px', height: '30px' }} />
       ) : (
-        <MoonIcon style={{ width: '30px', height: '30px' }} />
+        <Moon className="moon" style={{ width: '30px', height: '30px' }} />
       )}
     </span>
   </StyledHeader>

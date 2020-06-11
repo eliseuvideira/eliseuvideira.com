@@ -3,7 +3,7 @@ import Typography from 'typography';
 const typography = new Typography({
   baseFontSize: '18px',
   baseLineHeight: 1.666,
-  headerFontFamily: ['Montserrat', 'sans-serif'],
+  headerFontFamily: ['Futura PT', 'sans-serif'],
   bodyFontFamily: ['Merriweather', 'serif'],
 });
 

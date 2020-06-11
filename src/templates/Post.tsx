@@ -1,9 +1,10 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import Layout from '../components/Layout/Layout';
 import styled from 'styled-components';
 import PostTitle from '../components/Posts/PostTitle';
 import Seo from '../components/Seo';
+import PrevNext from '../components/Posts/PrevNext';
 
 const PostContent = styled.div`
   margin-top: 60px;
@@ -18,14 +19,6 @@ const PostContent = styled.div`
     line-height: 1.5;
     margin: 10px 0;
   }
-`;
-
-const PostNav = styled.ul`
-  margin-top: 60px;
-  padding: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 `;
 
 interface PostProps {
@@ -70,26 +63,18 @@ const Post: React.FC<{
     <PostContent>
       <article className="text" dangerouslySetInnerHTML={{ __html: html }} />
     </PostContent>
-    <PostNav>
-      <li>
-        <span className="text-muted">
-          {prev && (
-            <Link to={`/posts${prev.fields.slug}`}>
-              ← {prev.frontmatter.title}
-            </Link>
-          )}
-        </span>
-      </li>
-      <li>
-        <span className="text-muted">
-          {next && (
-            <Link to={`/posts${next.fields.slug}`}>
-              {next.frontmatter.title} →
-            </Link>
-          )}
-        </span>
-      </li>
-    </PostNav>
+    <PrevNext
+      prev={
+        prev
+          ? { link: `/posts${prev.fields.slug}`, title: prev.frontmatter.title }
+          : null
+      }
+      next={
+        next
+          ? { link: `/posts${next.fields.slug}`, title: next.frontmatter.title }
+          : null
+      }
+    />
   </Layout>
 );
 
