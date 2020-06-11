@@ -34,7 +34,6 @@ interface PostProps {
   frontmatter: {
     title: string;
     description: string;
-    rawDate: string;
     date: string;
     tags: string[];
     keywords: string[];
@@ -54,7 +53,7 @@ const Post: React.FC<{
     markdownRemark: {
       html,
       timeToRead,
-      frontmatter: { title, description, rawDate, date, tags, keywords },
+      frontmatter: { title, description, date, tags, keywords },
       fields: { slug },
     },
   },
@@ -67,13 +66,7 @@ const Post: React.FC<{
       keywords={unique(keywords.concat(tags))}
       url={`/posts${slug}`}
     />
-    <PostTitle
-      title={title}
-      rawDate={rawDate}
-      date={date}
-      tags={tags}
-      timeToRead={timeToRead}
-    />
+    <PostTitle title={title} date={date} tags={tags} timeToRead={timeToRead} />
     <PostContent>
       <article className="text" dangerouslySetInnerHTML={{ __html: html }} />
     </PostContent>
@@ -109,7 +102,6 @@ export const query = graphql`
       timeToRead
       frontmatter {
         title
-        rawDate: date
         date(formatString: "MMMM Do, YYYY")
         tags
         description
