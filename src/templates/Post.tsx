@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
-import Layout from '../components/Layout/Layout';
+import Layout from '../components/Layout';
 import styled from 'styled-components';
 import { PostTitle } from '../components/Posts/PostTitle';
 import Seo from '../components/Seo';

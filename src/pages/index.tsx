@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../components/Layout/Layout';
+import Layout from '../components/Layout';
 import { graphql } from 'gatsby';
 import { Posts } from '../components/Posts/Posts';
 import Seo from '../components/Seo';
