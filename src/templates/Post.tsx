@@ -10,12 +10,10 @@ const PostContent = styled.div`
   margin-top: 60px;
 
   h2 {
-    font-size: 32px;
     margin: 20px 0 5px;
   }
 
   p {
-    font-size: 20px;
     line-height: 1.5;
     margin: 10px 0;
   }
