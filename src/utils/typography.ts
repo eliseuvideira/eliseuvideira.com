@@ -1,8 +1,8 @@
 import Typography from 'typography';
 
 const typography = new Typography({
-  baseFontSize: '20px',
-  baseLineHeight: 1.666,
+  baseFontSize: '16px',
+  baseLineHeight: 1.75,
   headerFontFamily: ['Futura PT', 'sans-serif'],
   bodyFontFamily: ['Merriweather', 'serif'],
 });

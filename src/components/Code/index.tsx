@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import CopyButton from './CopyButton';
-import LanguageTag from './LanguageBadge';
+import LanguageTag from './Badge';
 import FileName from './FileName';
 import Highlight, { defaultProps } from 'prism-react-renderer';
-import theme from 'prism-react-renderer/themes/vsDark';
 
 const Wrapper = styled.div`
   border-bottom-left-radius: 3px;
@@ -27,21 +26,18 @@ const Code = ({ codeString, language, filename }: any) => {
     <Wrapper>
       {filename && <FileName filename={filename} />}
 
-      <Highlight
-        {...defaultProps}
-        code={codeString}
-        language={language}
-        theme={theme}
-      >
-        {({ className, style, tokens, getLineProps, getTokenProps }) => (
+      <Highlight {...defaultProps} code={codeString} language={language}>
+        {({ className, tokens, getLineProps, getTokenProps }) => (
           <div style={{ position: 'relative' }}>
-            <Pre className={className} style={style}>
+            <Pre className={className}>
               <LanguageTag language={language} />
               <CopyButton code={codeString.replace(/^\s*|\s*$/g, '')} />
               {tokens.map((line, i) => (
-                <div {...getLineProps({ line, key: i })}>
+                <div {...{ ...getLineProps({ line, key: i }), style: {} }}>
                   {line.map((token, key) => (
-                    <span {...getTokenProps({ token, key })} />
+                    <span
+                      {...{ ...getTokenProps({ token, key }), style: {} }}
+                    />
                   ))}
                 </div>
               ))}

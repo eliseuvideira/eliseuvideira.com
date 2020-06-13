@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const StyledDiv = styled.div`
   font-size: 0.75em;
   font-family: monospace;
+  font-weight: bold;
   letter-spacing: 0.075em;
   line-height: 1;
   position: absolute;
@@ -13,11 +14,12 @@ const StyledDiv = styled.div`
   top: 0;
   border-radius: 0 0 4px 4px;
   padding: 0.25rem 0.5rem;
-  background-color: #232129;
 `;
 
 const LanguageTag: React.FC<{ language: string }> = ({ language }) => (
-  <StyledDiv>{language}</StyledDiv>
+  <StyledDiv className={`lang-badge lang-badge__${language}`}>
+    {language}
+  </StyledDiv>
 );
 
 export default LanguageTag;

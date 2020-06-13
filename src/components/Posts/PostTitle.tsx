@@ -28,7 +28,7 @@ const PostTitle: React.FC<{
   timeToRead: number;
 }> = ({ to, title, date, tags, timeToRead }) => (
   <Title>
-    <h1 className="title">{to ? <Link to={to}>{title}</Link> : title}</h1>
+    <h1 className="primary">{to ? <Link to={to}>{title}</Link> : title}</h1>
     <div className="text-muted">
       <span>
         {date} — {tags.join(', ')}

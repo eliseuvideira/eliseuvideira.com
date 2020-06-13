@@ -35,7 +35,7 @@ const PrevNext: React.FC<Props> = ({ prev, next }) => (
         <Link to={prev.link}>
           <ItemTitle className="text-muted">Previous</ItemTitle>
           <div
-            className="title"
+            className="primary"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -62,7 +62,7 @@ const PrevNext: React.FC<Props> = ({ prev, next }) => (
         <Link to={next.link}>
           <ItemTitle className="text-muted">Next</ItemTitle>
           <div
-            className="title"
+            className="primary"
             style={{
               display: 'inline-flex',
               alignItems: 'center',

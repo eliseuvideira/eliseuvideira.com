@@ -36,12 +36,12 @@ const StyledHeader = styled.header`
   }
 `;
 
-export const Header: React.FC<{
+const Header: React.FC<{
   title: string;
   dark: boolean;
   onToggleDark: () => void;
 }> = ({ title, dark, onToggleDark }) => (
-  <StyledHeader className="header" style={{ height: '45px' }}>
+  <StyledHeader className="secondary" style={{ height: '45px' }}>
     <span className="header-title" onClick={() => navigate('/')}>
       {title}
     </span>
