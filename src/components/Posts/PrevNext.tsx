@@ -40,6 +40,7 @@ const PrevNext: React.FC<Props> = ({ prev, next }) => (
               display: 'inline-flex',
               alignItems: 'center',
               fontFamily: '"Futura PT", sans-serif',
+              fontWeight: 600,
             }}
           >
             <ArrowBack
@@ -48,6 +49,7 @@ const PrevNext: React.FC<Props> = ({ prev, next }) => (
                 width: '1rem',
                 marginRight: '9px',
                 marginLeft: '-27px',
+              fontWeight: 600,
               }}
             />
             {prev.title}
@@ -65,6 +67,7 @@ const PrevNext: React.FC<Props> = ({ prev, next }) => (
               display: 'inline-flex',
               alignItems: 'center',
               fontFamily: '"Futura PT", sans-serif',
+              fontWeight: 600,
             }}
           >
             {next.title}
