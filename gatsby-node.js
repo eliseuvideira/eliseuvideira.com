@@ -1,4 +1,4 @@
-const { createFilePath } = require(`gatsby-source-filesystem`);
+const { createFilePath } = require('gatsby-source-filesystem');
 
 exports.createPages = async ({ graphql, actions: { createPage } }) => {
   const PostComponent = require.resolve('./src/templates/Post.tsx');
