@@ -4,10 +4,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   const PostComponent = require.resolve('./src/templates/Post.tsx');
   const query = await graphql(`
     {
-      allMarkdownRemark(
-        sort: { fields: [frontmatter___date], order: DESC }
-        limit: 1000
-      ) {
+      allMdx(sort: { fields: [frontmatter___date], order: DESC }, limit: 1000) {
         edges {
           node {
             frontmatter {
@@ -23,7 +20,9 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       }
     }
   `);
-  const posts = query.data.allMarkdownRemark.edges;
+
+  const posts = query.data.allMdx.edges;
+
   for (const [index, { node: post }] of posts.entries()) {
     const prev = posts[index - 1] ? posts[index - 1].node : null;
     const next = posts[index + 1] ? posts[index + 1].node : null;
@@ -41,7 +40,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
 };
 
 exports.onCreateNode = ({ node, actions: { createNodeField }, getNode }) => {
-  if (node.internal.type === 'MarkdownRemark') {
+  if (node.internal.type === 'Mdx') {
     const value = createFilePath({ node, getNode });
     createNodeField({
       name: 'slug',

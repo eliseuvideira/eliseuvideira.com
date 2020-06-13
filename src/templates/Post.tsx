@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import PostTitle from '../components/Posts/PostTitle';
 import Seo from '../components/Seo';
 import PrevNext from '../components/Posts/PrevNext';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 const PostContent = styled.div`
   margin-top: 60px;
@@ -20,7 +21,7 @@ const PostContent = styled.div`
 `;
 
 interface PostProps {
-  html: string;
+  body: string;
   timeToRead: number;
   frontmatter: {
     title: string;
@@ -37,12 +38,12 @@ interface PostProps {
 const unique = (arr: string[]): string[] => [...(new Set(arr) as any)];
 
 const Post: React.FC<{
-  data: { markdownRemark: PostProps };
+  data: { mdx: PostProps };
   pageContext: { prev: PostProps | null; next: PostProps | null };
 }> = ({
   data: {
-    markdownRemark: {
-      html,
+    mdx: {
+      body,
       timeToRead,
       frontmatter: { title, description, date, tags, keywords },
       fields: { slug },
@@ -58,8 +59,8 @@ const Post: React.FC<{
       url={`/posts${slug}`}
     />
     <PostTitle title={title} date={date} tags={tags} timeToRead={timeToRead} />
-    <PostContent>
-      <article className="text" dangerouslySetInnerHTML={{ __html: html }} />
+    <PostContent className="text">
+      <MDXRenderer>{body}</MDXRenderer>
     </PostContent>
     <PrevNext
       prev={
@@ -80,8 +81,8 @@ export default Post;
 
 export const query = graphql`
   query($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
+    mdx(fields: { slug: { eq: $slug } }) {
+      body
       timeToRead
       frontmatter {
         title

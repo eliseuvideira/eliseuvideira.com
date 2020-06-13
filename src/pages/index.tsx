@@ -4,9 +4,9 @@ import { graphql } from 'gatsby';
 import Posts from '../components/Posts/Posts';
 import Seo from '../components/Seo';
 
-const Index: React.FC<{ data: { allMarkdownRemark: { edges: any[] } } }> = ({
+const Index: React.FC<{ data: { allMdx: { edges: any[] } } }> = ({
   data: {
-    allMarkdownRemark: { edges: posts },
+    allMdx: { edges: posts },
   },
 }) => (
   <Layout>
@@ -32,7 +32,7 @@ export default Index;
 
 export const query = graphql`
   {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
           frontmatter {
