@@ -14,15 +14,15 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'images',
-        path: `${__dirname}/content/images`,
+        name: 'assets',
+        path: `${__dirname}/content/assets`,
       },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/content/posts`,
         name: 'posts',
+        path: `${__dirname}/content/posts`,
       },
     },
     'gatsby-transformer-remark',
@@ -37,7 +37,7 @@ module.exports = {
         background_color: '#312A3A',
         theme_color: '#FBFBFB',
         display: 'standalone',
-        icon: `${__dirname}/content/images/logo-icon.png`,
+        icon: `${__dirname}/content/assets/logo-icon.png`,
       },
     },
     'gatsby-plugin-offline',
