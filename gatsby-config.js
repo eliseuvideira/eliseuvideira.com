@@ -55,22 +55,12 @@ module.exports = {
     },
     'gatsby-plugin-styled-components',
     {
-      resolve: `gatsby-styled-components-dark-mode`,
+      resolve: 'gatsby-plugin-use-dark-mode',
       options: {
-        light: {
-          background: '#fbfbfb',
-          primary: '#007acc',
-          secondary: '#36313d',
-          text: '#1a202c',
-          textMuted: '#696076',
-        },
-        dark: {
-          background: '#252526',
-          primary: '#79cd75',
-          secondary: '#fafafa',
-          text: '#e7ebed',
-          textMuted: '#d7dee2',
-        },
+        classNameDark: 'dark',
+        classNameLight: 'light',
+        storageKey: 'theme',
+        minify: true,
       },
     },
     {

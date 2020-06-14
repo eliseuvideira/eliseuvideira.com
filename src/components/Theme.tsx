@@ -1,5 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import { createGlobalStyle } from 'styled-components';
+import useDarkMode from 'use-dark-mode';
 
 const GlobalStyles = createGlobalStyle`
   html,
@@ -114,6 +115,10 @@ const GlobalStyles = createGlobalStyle`
   .token.constant,
   .token.symbol,
   .token.deleted {
+    color: ${({ theme: { isDark } }: any) => (!isDark ? '#24292e' : '#569cd6')};
+  }
+
+  .token.tag.script {
     color: ${({ theme: { isDark } }: any) => (!isDark ? '#24292e' : '#d4d4d4')};
   }
 
@@ -197,10 +202,32 @@ const GlobalStyles = createGlobalStyle`
   }
   `;
 
+const light = {
+  background: '#fbfbfb',
+  primary: '#007acc',
+  secondary: '#36313d',
+  text: '#1a202c',
+  textMuted: '#696076',
+  isDark: false,
+};
+
+const dark = {
+  background: '#252526',
+  primary: '#79cd75',
+  secondary: '#fafafa',
+  text: '#e7ebed',
+  textMuted: '#d7dee2',
+  isDark: true,
+};
+
 const Theme: React.FC<PropsWithChildren<{}>> = ({ children }) => {
+  const darkMode = useDarkMode(false);
+
+  const theme = darkMode.value ? dark : light;
+
   return (
     <>
-      <GlobalStyles />
+      <GlobalStyles theme={theme} />
       {children}
     </>
   );
