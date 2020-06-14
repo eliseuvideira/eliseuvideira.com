@@ -1,9 +1,9 @@
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, useContext } from 'react';
 import Header from './Header';
 import styled from 'styled-components';
 import Footer from './Footer';
 import Theme from '../Theme';
-import useDarkMode from 'use-dark-mode';
+import { ThemeManagerContext } from 'gatsby-styled-components-dark-mode';
 
 const StyledLayout = styled.div`
   max-width: 960px;
@@ -23,15 +23,9 @@ const StyledLayout = styled.div`
 `;
 
 const Layout: React.FC<PropsWithChildren<{}>> = ({ children }) => {
-  const darkMode = useDarkMode(false);
+  const themeContext = useContext(ThemeManagerContext);
 
-  const onToggleDark = () => {
-    if (darkMode.value) {
-      darkMode.disable();
-    } else {
-      darkMode.enable();
-    }
-  };
+  const onToggleDark = () => themeContext.toggleDark();
 
   return (
     <>
@@ -39,7 +33,7 @@ const Layout: React.FC<PropsWithChildren<{}>> = ({ children }) => {
       <StyledLayout>
         <div className="layout-container">
           <Header
-            dark={darkMode.value}
+            dark={themeContext.isDark}
             title="eliseuvideira"
             onToggleDark={onToggleDark}
           />

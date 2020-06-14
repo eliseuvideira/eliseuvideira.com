@@ -2,15 +2,11 @@ import React, { PropsWithChildren } from 'react';
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
-  html {
-    height: 100%;
-  }
-
   html,
   body,
   body > div,
   body > div > div {
-    min-height: 100%;
+    height: 100%;
     min-width: 350px;
   }
 
@@ -22,305 +18,189 @@ const GlobalStyles = createGlobalStyle`
     color: inherit;
   }
 
-  .dark-mode {
-    background-color: ${({ theme }: any) => theme.dark.background};
-
-    .text {
-      color: ${({ theme }: any) => theme.dark.text};
-    }
-
-    .text-muted {
-      color: ${({ theme }: any) => theme.dark.textMuted};
-    }
-
-    .secondary {
-      color: ${({ theme }: any) => theme.dark.secondary};
-    }
-
-    .primary {
-      color: ${({ theme }: any) => theme.dark.primary};
-    }
+  body {
+    background-color: ${({ theme }: any) => theme.background};
   }
 
-  .light-mode {
-    background-color: ${({ theme }: any) => theme.light.background};
-
-    .text {
-      color: ${({ theme }: any) => theme.light.text};
-    }
-
-    .text-muted {
-      color: ${({ theme }: any) => theme.light.textMuted};
-    }
-
-    .secondary {
-      color: ${({ theme }: any) => theme.light.secondary};
-    }
-
-    .primary {
-      color: ${({ theme }: any) => theme.light.primary};
-    }
+  .text {
+    color: ${({ theme }: any) => theme.text};
   }
 
-  .light-mode {
-    .lang-badge {
-      background-color: ${({ theme }: any) => theme.light.primary};
-      color: ${({ theme }: any) => theme.light.background};
-    }
+  .text-muted {
+    color: ${({ theme }: any) => theme.textMuted};
+  }
 
-    code[class*="language-"],
-    pre[class*="language-"] {
-      color: #24292e;
-	    font-family: "Consolas", "Courier New", Courier, monospace;
-	    font-size: .9em;
-	    hyphens: none;
-	    tab-size: 4;
-    }
+  .secondary {
+    color: ${({ theme }: any) => theme.secondary};
+  }
 
-    pre > code[class*="language-"] {
-      font-size: 1em;
-    }
+  .primary {
+    color: ${({ theme }: any) => theme.primary};
+  }
 
-    pre[class*="language-"] {
-      border: 1px solid #dddddd;
-      background-color: white;
-    }
+  code[class*="language-"],
+  pre[class*="language-"] {
+    color: ${({ theme: { isDark } }: any) => (!isDark ? '#24292e' : '#d4d4d4')};
+    direction: ltr;
+    font-family: "Consolas", "Ubuntu Mono", "Courier New", Courier, monospace;
+    font-size: 0.9em;
+    line-height: 1.5;
+    text-align: left;
+    text-shadow: none;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    -moz-tab-size: 2;
+    -o-tab-size: 2;
+    tab-size: 2;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
 
-    :not(pre) > code[class*="language-"] {
-      padding: .2em;
-      padding-top: 1px;
-      padding-bottom: 1px;
-      background: #f8f8f8;
-      border: 1px solid #dddddd;
-    }
+  pre > code[class*="language-"] {
+    font-size: 1em;
+  }
 
-    .token.property-access {
-      color: #005cc5;
-    }
+  pre[class*="language-"]::-moz-selection,
+  pre[class*="language-"] ::-moz-selection,
+  code[class*="language-"]::-moz-selection,
+  code[class*="language-"] ::-moz-selection,
+  pre[class*="language-"]::selection,
+  code[class*="language-"]::selection {
+    background: #b3d4fc;
+  }
 
-    .token.class-name,
-    .token.tag.class-name,
-    .token.maybe-class-name,
-    .token.tag.maybe-class-name {
-      color: #24292e;
-    }
+  pre[class*="language-"] {
+    padding: 2em 1em 1em;
+    margin: 0.5em 0;
+    overflow: auto;
+    border: ${({ theme: { isDark } }: any) =>
+      !isDark ? '1px solid #dddddd' : '1px solid rgba(128, 128, 128, 0.35)'};
+    background-color: ${({ theme: { isDark } }: any) =>
+      !isDark ? 'white' : '#1e1e1e'};
+  }
+
+  :not(pre) > code[class*="language-"] {
+    padding: 0.1em 0.3em;
+    border-radius: 0.3em;
+    color: ${({ theme: { isDark } }: any) => (!isDark ? '#24292e' : '#db4c69')};
+    background-color: ${({ theme: { isDark } }: any) =>
+      !isDark ? '#f8f8f8' : '#f9f2f4'};
+    border: ${({ theme: { isDark } }: any) =>
+      !isDark ? '1px solid #dddddd' : '1px solid rgba(128, 128, 128, 0.35)'};
+  }
 
   .token.comment,
   .token.prolog,
   .token.doctype,
   .token.cdata {
-    color: #6a737d;
+    color: ${({ theme: { isDark } }: any) => (!isDark ? '#999988' : '#6a9955')};
     font-style: italic;
-  }
-
-  .token.string,
-  .token.tag.string,
-  .token.attr-value,
-  .token.tag.attr-value  {
-    color: #032f62;
   }
 
   .token.punctuation,
   .token.tag.punctuation,
+  .token.parameter.punctuation,
   .token.operator {
-    color: #393A34;
+    color: ${({ theme: { isDark } }: any) => (!isDark ? '#393a34' : '#d4d4d4')};
+  }
+
+  .token.property,
+  .token.tag,
+  .token.boolean,
+  .token.number,
+  .token.constant,
+  .token.symbol,
+  .token.deleted {
+    color: ${({ theme: { isDark } }: any) => (!isDark ? '#24292e' : '#d4d4d4')};
+  }
+
+  .token.deleted {
+    color: ${({ theme: { isDark } }: any) => (!isDark ? '#9a050f' : '#b5cea8')};
   }
 
   .token.entity,
-  .token.url,
-  .token.symbol,
-  .token.number,
-  .token.boolean,
+  .token.url {
+    color: ${({ theme: { isDark } }: any) => (!isDark ? '#36acaa' : '#d4d4d4')};
+  }
+
   .token.variable,
-  .token.constant,
-  .token.property,
   .token.regex,
   .token.inserted {
-    color: #005cc5;
+    color: ${({ theme: { isDark } }: any) => (!isDark ? '#36acaa' : '#d16969')};
   }
 
-    .token.atrule,
-    .token.keyword,
-    .token.attr-name,
-    .token.tag.attr-name,
-    .language-autohotkey .token.selector {
-      color: #d73a49;
-    }
-
-    .token.function,
-    .token.deleted,
-    .language-autohotkey .token.tag {
-      color: #6f42c1;
-    }
-
-    .token.tag,
-    .token.selector,
-    .language-autohotkey .token.keyword {
-      color: #22863a;
-    }
-
-    .token.important,
-    .token.bold {
-      font-weight: bold;
-    }
-
-    .token.italic {
-      font-style: italic;
-    }
+  .token.inserted {
+    color: ${({ theme: { isDark } }: any) => (!isDark ? '#36acaa' : '#ce9178')};
   }
 
-  .dark-mode {
-    .lang-badge {
-      background-color: #294e80;
-      color: #1e1e1e;
-      font-weight: bold;
-    }
+  .token.selector,
+  .token.string,
+  .token.char,
+  .token.builtin {
+    color: ${({ theme: { isDark } }: any) => (!isDark ? '#00009f' : '#ce9178')};
+  }
 
-    pre[class*="language-"] {
-      background-color: #1e1e1e;
-    }
+  .token.attr-name {
+    color: ${({ theme: { isDark } }: any) => (!isDark ? '#005cc5' : '#9cdcfe')};
+  }
 
+  .token.string {
+    color: ${({ theme: { isDark } }: any) => (!isDark ? '#032f62' : '#ce9178')};
+  }
 
-.token.comment,
-.token.prolog,
-.token.doctype,
-.token.cdata {
-	color: #6a9955;
-}
+  .language-css .token.string,
+  .style .token.string {
+    color: ${({ theme: { isDark } }: any) => (!isDark ? '#e3116c' : '#d4d4d4')};
+  }
 
-.token.punctuation, .token.tag.punctuation, .token.parameter.punctuation {
-	color: #d4d4d4;
-}
+  .token.atrule,
+  .token.keyword {
+    color: ${({ theme: { isDark } }: any) => (!isDark ? '#d73a49' : '#569cd6')};
+  }
 
-.token.property,
-.token.tag,
-.token.boolean,
-.token.number,
-.token.constant,
-.token.symbol,
-.token.deleted {
-	color: #569cd6;
-}
+  .token.attr-value {
+    color: ${({ theme: { isDark } }: any) => (!isDark ? '#032f62' : '#ce9178')};
+  }
 
-.token.selector,
-.token.attr-name,
-.token.string,
-.token.char,
-.token.builtin,
-.token.inserted {
-	color: #ce9178;
-}
+  .token.function {
+    color: ${({ theme: { isDark } }: any) => (!isDark ? '#6f42c1' : '#dcdcaa')};
+  }
 
-.token.operator,
-.token.entity,
-.token.url,
-.language-css .token.string,
-.style .token.string {
-	color: #d4d4d4;
-	background: #1e1e1e;
-}
+  .token.important {
+    color: ${({ theme: { isDark } }: any) => (!isDark ? '#9a050f' : '#d16969')};
+  }
 
-.token.atrule,
-.token.attr-value,
-.token.keyword {
-	color: #569cd6;
-}
+  .token.class-name,
+  .token.maybe-class-name {
+    color: ${({ theme: { isDark } }: any) => (!isDark ? '#006b8f' : '#4ec9b0')};
+  }
 
-.token.function {
-	color: #dcdcaa;
-}
+  .token.parameter,
+  .token.interpolation {
+    color: ${({ theme: { isDark } }: any) => (!isDark ? '#005cc5' : '#9cdcfe')};
+  }
 
-.token.regex,
-.token.important,
-.token.variable {
-	color: #d16969;
-}
+  .token.punctuation.interpolation-punctuation {
+    color: ${({ theme: { isDark } }: any) => (!isDark ? '#36acaa' : '#569cd6')};
+  }
 
-.token.important,
-.token.bold {
-	font-weight: bold;
-}
+  .token.important,
+  .token.bold {
+    font-weight: bold;
+  }
 
-.token.italic {
-	font-style: italic;
-}
-
-.token.constant {
-	color: #9CDCFE;
-}
-
-.token.class-name {
-	color: #4EC9B0;
-}
-
-.token.parameter {
-	color: #9CDCFE;
-}
-
-.token.interpolation {
-	color: #9CDCFE;
-}
-
-.token.punctuation.interpolation-punctuation {
-	color: #569cd6;
-}
-
-.token.boolean {
-	color: #569cd6;
-}
-
-.token.property {
-	color: #9cdcfe;
-}
-
-.token.selector {
-	color: #d7ba7d;
-}
-
-.token.tag :not(.function) {
-	color: #569cd6;
-}
-
-.token.attr-name {
-	color: #9cdcfe;
-}
-
-.token.attr-value {
-	color: #ce9178;
-}
-
-.token.entity {
-	color: #4ec9b0;
-	cursor: unset;
-}
-
-.token.namespace {
-	color: #4ec9b0;
-}
+  .token.italic {
+    font-style: italic;
   }
   `;
-
-const theme = {
-  dark: {
-    background: '#252526',
-    primary: '#79cd75',
-    secondary: '#fafafa',
-    text: '#e7ebed',
-    textMuted: '#d7dee2',
-  },
-  light: {
-    background: '#fbfbfb',
-    primary: '#007acc',
-    secondary: '#36313d',
-    text: '#1a202c',
-    textMuted: '#696076',
-  },
-};
 
 const Theme: React.FC<PropsWithChildren<{}>> = ({ children }) => {
   return (
     <>
-      <GlobalStyles theme={theme} />
+      <GlobalStyles />
       {children}
     </>
   );

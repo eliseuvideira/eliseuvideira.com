@@ -53,13 +53,24 @@ module.exports = {
         head: true,
       },
     },
+    'gatsby-plugin-styled-components',
     {
-      resolve: 'gatsby-plugin-use-dark-mode',
+      resolve: `gatsby-styled-components-dark-mode`,
       options: {
-        classNameDark: 'dark-mode',
-        classNameLight: 'light-mode',
-        storageKey: 'dark-mode',
-        minify: true,
+        light: {
+          background: '#fbfbfb',
+          primary: '#007acc',
+          secondary: '#36313d',
+          text: '#1a202c',
+          textMuted: '#696076',
+        },
+        dark: {
+          background: '#252526',
+          primary: '#79cd75',
+          secondary: '#fafafa',
+          text: '#e7ebed',
+          textMuted: '#d7dee2',
+        },
       },
     },
     {
@@ -68,6 +79,5 @@ module.exports = {
         pathToConfigModule: 'src/utils/typography',
       },
     },
-    'gatsby-plugin-styled-components',
   ],
 };
