@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { navigate } from 'gatsby';
 import { FiMoon as Moon, FiSun as Sun } from 'react-icons/fi';
+import { ThemeManagerContext } from 'gatsby-styled-components-dark-mode';
 
 const StyledHeader = styled.header`
   height: 45px;
@@ -38,21 +39,23 @@ const StyledHeader = styled.header`
 
 const Header: React.FC<{
   title: string;
-  dark: boolean;
-  onToggleDark: () => void;
-}> = ({ title, dark, onToggleDark }) => (
-  <StyledHeader className="secondary" style={{ height: '45px' }}>
-    <span className="header-title" onClick={() => navigate('/')}>
-      {title}
-    </span>
-    <span className="header-icon" onClick={onToggleDark}>
-      {dark ? (
-        <Sun className="sun" style={{ width: '30px', height: '30px' }} />
-      ) : (
-        <Moon className="moon" style={{ width: '30px', height: '30px' }} />
-      )}
-    </span>
-  </StyledHeader>
-);
+}> = ({ title }) => {
+  const themeContext = useContext(ThemeManagerContext);
+
+  return (
+    <StyledHeader className="secondary" style={{ height: '45px' }}>
+      <span className="header-title" onClick={() => navigate('/')}>
+        {title}
+      </span>
+      <span className="header-icon" onClick={() => themeContext.toggleDark()}>
+        {themeContext.isDark ? (
+          <Sun className="sun" style={{ width: '30px', height: '30px' }} />
+        ) : (
+          <Moon className="moon" style={{ width: '30px', height: '30px' }} />
+        )}
+      </span>
+    </StyledHeader>
+  );
+};
 
 export default Header;

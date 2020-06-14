@@ -1,9 +1,8 @@
-import React, { PropsWithChildren, useContext } from 'react';
+import React, { PropsWithChildren } from 'react';
 import Header from './Header';
 import styled from 'styled-components';
 import Footer from './Footer';
 import Theme from '../Theme';
-import { ThemeManagerContext } from 'gatsby-styled-components-dark-mode';
 
 const StyledLayout = styled.div`
   max-width: 960px;
@@ -22,28 +21,18 @@ const StyledLayout = styled.div`
   }
 `;
 
-const Layout: React.FC<PropsWithChildren<{}>> = ({ children }) => {
-  const themeContext = useContext(ThemeManagerContext);
-
-  const onToggleDark = () => themeContext.toggleDark();
-
-  return (
-    <>
-      <Theme />
-      <StyledLayout>
-        <div className="layout-container">
-          <Header
-            dark={themeContext.isDark}
-            title="eliseuvideira"
-            onToggleDark={onToggleDark}
-          />
-          {children}
-          <div className="layout-spacing" />
-        </div>
-        <Footer />
-      </StyledLayout>
-    </>
-  );
-};
+const Layout: React.FC<PropsWithChildren<{}>> = ({ children }) => (
+  <>
+    <Theme />
+    <StyledLayout>
+      <div className="layout-container">
+        <Header title="eliseuvideira" />
+        {children}
+        <div className="layout-spacing" />
+      </div>
+      <Footer />
+    </StyledLayout>
+  </>
+);
 
 export default Layout;
