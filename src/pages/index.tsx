@@ -1,10 +1,24 @@
 import React from 'react';
 import Layout from '../components/Layout/Layout';
 import { graphql } from 'gatsby';
-import Posts from '../components/Posts/Posts';
 import Seo from '../components/Seo';
+import PostTitle from '../components/Posts/PostTitle';
 
-const Index: React.FC<{ data: { allMdx: { edges: any[] } } }> = ({
+interface Props {
+  data: {
+    allMdx: {
+      edges: {
+        node: {
+          fields: { slug: string };
+          frontmatter: { title: string; date: string; tags: string[] };
+          timeToRead: number;
+        };
+      }[];
+    };
+  };
+}
+
+const Index: React.FC<Props> = ({
   data: {
     allMdx: { edges: posts },
   },
@@ -24,7 +38,27 @@ const Index: React.FC<{ data: { allMdx: { edges: any[] } } }> = ({
       ]}
       url="/"
     />
-    <Posts posts={posts} />
+
+    <div>
+      {posts.map(
+        ({
+          node: {
+            fields: { slug },
+            frontmatter: { title, date, tags },
+            timeToRead,
+          },
+        }) => (
+          <PostTitle
+            key={slug}
+            to={`/posts${slug}`}
+            title={title}
+            date={date}
+            tags={tags}
+            timeToRead={timeToRead}
+          />
+        ),
+      )}
+    </div>
   </Layout>
 );
 
