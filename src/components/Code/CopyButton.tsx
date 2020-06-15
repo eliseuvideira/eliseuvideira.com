@@ -16,16 +16,6 @@ const StyledButton = styled.button`
   padding: 0.5rem;
   transition: all 0.25s linear 0s;
   border-radius: 4px;
-  &:hover:enabled {
-    background-color: #3c3c3c;
-    box-shadow: rgba(46, 41, 51, 0.08) 0px 1px 2px,
-      rgba(71, 63, 79, 0.08) 0px 2px 4px;
-    color: #ffffff;
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-  }
 `;
 
 const CopyButton: React.FC<{ code: string }> = ({ code }) => {
@@ -42,7 +32,11 @@ const CopyButton: React.FC<{ code: string }> = ({ code }) => {
   };
 
   return (
-    <StyledButton onClick={onClick} disabled={values.disabled}>
+    <StyledButton
+      className="code-block-copy-button"
+      onClick={onClick}
+      disabled={values.disabled}
+    >
       {values.label}
     </StyledButton>
   );

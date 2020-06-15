@@ -75,12 +75,38 @@ const GlobalStyles = createGlobalStyle`
 
   pre[class*="language-"] {
     padding: 2em 1em 1em;
-    margin: 0.5em 0;
     overflow: auto;
     border: ${({ theme: { isDark } }: any) =>
       !isDark ? '1px solid #dddddd' : '1px solid rgba(128, 128, 128, 0.35)'};
     background-color: ${({ theme: { isDark } }: any) =>
       !isDark ? 'white' : '#1e1e1e'};
+  }
+
+  .code-block-title {
+    border: ${({ theme: { isDark } }: any) =>
+      !isDark ? '1px solid #dddddd' : '1px solid rgba(128, 128, 128, 0.35)'};
+    background-color: ${({ theme: { isDark } }: any) =>
+      !isDark ? 'white' : '#1e1e1e'};
+    border-bottom-width: 0;
+    color: ${({ theme: { isDark } }: any) => (!isDark ? '#393a34' : '#d4d4d4')};
+  }
+
+  .code-block-copy-button {
+    color: ${({ theme: { isDark } }: any) => (!isDark ? '#4e4e4e' : '#d2d2d2')};
+
+    &:hover:enabled {
+      background-color: ${({ theme: { isDark } }: any) =>
+        !isDark ? '#dcdcdc' : '#3c3c3c'};
+      box-shadow: ${({ theme: { isDark } }: any) =>
+        !isDark
+          ? 'rgba(184, 192, 176, 0.08) 0px 1px 2px, rgba(209, 214, 204, 0.08) 0px 2px 4px'
+          : 'rgba(46, 41, 51, 0.08) 0px 1px 2px, rgba(71, 63, 79, 0.08) 0px 2px 4px'};
+      color: ${({ theme: { isDark } }: any) => (!isDark ? '#000' : '#fff')};
+    }
+
+    &:disabled {
+      cursor: default;
+    }
   }
 
   :not(pre) > code[class*="language-"] {
@@ -91,6 +117,10 @@ const GlobalStyles = createGlobalStyle`
       !isDark ? '#f8f8f8' : '#f9f2f4'};
     border: ${({ theme: { isDark } }: any) =>
       !isDark ? '1px solid #dddddd' : '1px solid rgba(128, 128, 128, 0.35)'};
+  }
+
+  .token-line:not(:last-child) {
+    min-height: 1rem;
   }
 
   .token.comment,
@@ -116,6 +146,10 @@ const GlobalStyles = createGlobalStyle`
   .token.symbol,
   .token.deleted {
     color: ${({ theme: { isDark } }: any) => (!isDark ? '#24292e' : '#569cd6')};
+  }
+
+  .language-json .token.property {
+    color: ${({ theme: { isDark } }: any) => (!isDark ? '#24292e' : '#d4d4d4')};
   }
 
   .token.tag.script {

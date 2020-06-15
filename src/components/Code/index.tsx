@@ -6,6 +6,7 @@ import FileName from './FileName';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 
 const Wrapper = styled.div`
+  margin: 0.5em 0 1.25em;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
   font-size: 14px;
