@@ -9,9 +9,8 @@ interface Props {
     allMdx: {
       edges: {
         node: {
-          fields: { slug: string };
+          fields: { slug: string; readingTime: { minutes: number } };
           frontmatter: { title: string; date: string; tags: string[] };
-          timeToRead: number;
         };
       }[];
     };
@@ -43,9 +42,11 @@ const Index: React.FC<Props> = ({
       {posts.map(
         ({
           node: {
-            fields: { slug },
+            fields: {
+              slug,
+              readingTime: { minutes },
+            },
             frontmatter: { title, date, tags },
-            timeToRead,
           },
         }) => (
           <PostTitle
@@ -54,7 +55,7 @@ const Index: React.FC<Props> = ({
             title={title}
             date={date}
             tags={tags}
-            timeToRead={timeToRead}
+            timeToRead={Math.ceil(minutes)}
           />
         ),
       )}
@@ -77,8 +78,10 @@ export const query = graphql`
           }
           fields {
             slug
+            readingTime {
+              minutes
+            }
           }
-          timeToRead
         }
       }
     }

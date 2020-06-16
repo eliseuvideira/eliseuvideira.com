@@ -31,6 +31,7 @@ module.exports = {
         extensions: ['.mdx', '.md'],
       },
     },
+    'gatsby-remark-reading-time',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     {

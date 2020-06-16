@@ -22,7 +22,6 @@ const PostContent = styled.div`
 
 interface PostProps {
   body: string;
-  timeToRead: number;
   frontmatter: {
     title: string;
     description: string;
@@ -32,6 +31,9 @@ interface PostProps {
   };
   fields: {
     slug: string;
+    readingTime: {
+      minutes: number;
+    };
   };
 }
 
@@ -44,9 +46,11 @@ const Post: React.FC<{
   data: {
     mdx: {
       body,
-      timeToRead,
       frontmatter: { title, description, date, tags, keywords },
-      fields: { slug },
+      fields: {
+        slug,
+        readingTime: { minutes },
+      },
     },
   },
   pageContext: { prev, next },
@@ -58,7 +62,12 @@ const Post: React.FC<{
       keywords={unique(keywords.concat(tags))}
       url={`/posts${slug}`}
     />
-    <PostTitle title={title} date={date} tags={tags} timeToRead={timeToRead} />
+    <PostTitle
+      title={title}
+      date={date}
+      tags={tags}
+      timeToRead={Math.ceil(minutes)}
+    />
     <PostContent className="text">
       <MDXRenderer>{body}</MDXRenderer>
     </PostContent>
@@ -83,7 +92,6 @@ export const query = graphql`
   query($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
       body
-      timeToRead
       frontmatter {
         title
         date(formatString: "MMMM Do, YYYY")
@@ -93,6 +101,9 @@ export const query = graphql`
       }
       fields {
         slug
+        readingTime {
+          minutes
+        }
       }
     }
   }
