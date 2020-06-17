@@ -233,6 +233,19 @@ const GlobalStyles = createGlobalStyle`
   .token.italic {
     font-style: italic;
   }
+
+  h1, h2 {
+    border-bottom: 1px solid ${({ theme: { isDark } }: any) =>
+      !isDark ? 'hsla(0,0%,0%,0.07)' : 'hsla(0,0%,100%,0.07)'};
+  }
+  h6 {
+    color: ${({ theme: { isDark } }: any) =>
+      !isDark ? 'hsla(0,0%,0%,0.53)' : 'hsla(0,0%,100%,0.80)'};
+  }
+  blockquote {
+    border-left: 4px solid ${({ theme: { isDark } }: any) =>
+      !isDark ? 'hsla(0,0%,0%,0.80)' : 'hsla(0,0%,100%,0.80)'};
+  }
   `;
 
 const light = {

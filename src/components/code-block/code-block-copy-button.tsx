@@ -18,7 +18,7 @@ const StyledButton = styled.button`
   border-radius: 4px;
 `;
 
-const CopyButton: React.FC<{ code: string }> = ({ code }) => {
+const CodeBlockCopyButton: React.FC<{ code: string }> = ({ code }) => {
   const [values, setValues] = useState({ label: 'Copy', disabled: false });
 
   const toggleDisabled = () => {
@@ -42,4 +42,4 @@ const CopyButton: React.FC<{ code: string }> = ({ code }) => {
   );
 };
 
-export default CopyButton;
+export default CodeBlockCopyButton;

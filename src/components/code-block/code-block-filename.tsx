@@ -9,8 +9,8 @@ const StyledDiv = styled.div`
   font-family: monospace;
 `;
 
-const FileName: React.FC<{ filename: string }> = ({ filename }) => (
+const CodeBlockFilename: React.FC<{ filename: string }> = ({ filename }) => (
   <StyledDiv className="code-block-title">{filename}</StyledDiv>
 );
 
-export default FileName;
+export default CodeBlockFilename;

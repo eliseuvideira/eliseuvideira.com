@@ -9,17 +9,15 @@ const StyledDiv = styled.div`
   line-height: 1;
   position: absolute;
   left: 1.5em;
-  text-align: right;
   text-transform: uppercase;
   top: 0;
-  border-radius: 0 0 4px 4px;
   padding: 0.25rem 0.5rem;
 `;
 
-const LanguageTag: React.FC<{ language: string }> = ({ language }) => (
-  <StyledDiv className={`lang-badge lang-badge__${language}`}>
+const CodeBlockBadge: React.FC<{ language: string }> = ({ language }) => (
+  <StyledDiv className={`code-block-badge code-block-badge-${language}`}>
     {language}
   </StyledDiv>
 );
 
-export default LanguageTag;
+export default CodeBlockBadge;

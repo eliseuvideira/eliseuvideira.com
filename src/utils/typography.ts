@@ -1,11 +1,7 @@
 import Typography from 'typography';
+import githubTheme from 'typography-theme-github';
 
-const typography = new Typography({
-  baseFontSize: '16px',
-  baseLineHeight: 1.75,
-  headerFontFamily: ['Futura PT', 'sans-serif'],
-  bodyFontFamily: ['Merriweather', 'serif'],
-});
+const typography = new Typography(githubTheme);
 
 if (process.env.NODE_ENV !== `production`) {
   typography.injectStyles();

@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import CopyButton from './code-block-copy-button';
-import LanguageTag from './code-block-badge';
-import FileName from './code-block-filename';
+import CodeBlockCopyButton from './code-block-copy-button';
+import CodeBlockBadge from './code-block-badge';
+import CodeBlockFilename from './code-block-filename';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 
 const Wrapper = styled.div`
@@ -22,32 +22,28 @@ const Pre = styled.pre`
   line-height: 1.5em;
 `;
 
-const Code = ({ codeString, language, filename }: any) => {
+const CodeBlock = ({ codeString, language, filename }: any) => {
   return (
     <Wrapper>
-      {filename && <FileName filename={filename} />}
+      {filename && <CodeBlockFilename filename={filename} />}
 
       <Highlight {...defaultProps} code={codeString} language={language}>
         {({ className, tokens, getLineProps, getTokenProps }) => (
-          <div style={{ position: 'relative' }}>
-            <Pre className={className}>
-              <LanguageTag language={language} />
-              <CopyButton code={codeString.replace(/^\s*|\s*$/g, '')} />
-              {tokens.map((line, i) => (
-                <div {...{ ...getLineProps({ line, key: i }), style: {} }}>
-                  {line.map((token, key) => (
-                    <span
-                      {...{ ...getTokenProps({ token, key }), style: {} }}
-                    />
-                  ))}
-                </div>
-              ))}
-            </Pre>
-          </div>
+          <Pre className={className}>
+            <CodeBlockBadge language={language} />
+            <CodeBlockCopyButton code={codeString.replace(/^\s*|\s*$/g, '')} />
+            {tokens.map((line, i) => (
+              <div {...{ ...getLineProps({ line, key: i }), style: {} }}>
+                {line.map((token, key) => (
+                  <span {...{ ...getTokenProps({ token, key }), style: {} }} />
+                ))}
+              </div>
+            ))}
+          </Pre>
         )}
       </Highlight>
     </Wrapper>
   );
 };
 
-export default Code;
+export default CodeBlock;

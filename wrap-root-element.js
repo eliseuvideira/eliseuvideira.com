@@ -1,6 +1,6 @@
 import React from 'react';
 import { MDXProvider } from '@mdx-js/react';
-import Code from './src/components/code-block';
+import CodeBlock from './src/components/code-block';
 import { preToCodeBlock } from 'mdx-utils';
 
 export const wrapRootElement = (() => {
@@ -9,7 +9,7 @@ export const wrapRootElement = (() => {
       const props = preToCodeBlock(preProps);
 
       if (props) {
-        return <Code {...props} />;
+        return <CodeBlock {...props} />;
       }
       return <pre {...preProps} />;
     },
