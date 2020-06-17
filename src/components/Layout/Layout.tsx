@@ -23,7 +23,7 @@ const StyledLayout = styled.div`
 `;
 
 const Layout: React.FC<PropsWithChildren<{}>> = ({ children }) => {
-  const darkMode = useDarkMode(true);
+  const darkMode = useDarkMode(false);
 
   return (
     <Theme darkMode={darkMode.value}>
