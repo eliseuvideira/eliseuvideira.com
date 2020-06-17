@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { navigate } from 'gatsby';
 import { FiMoon as Moon, FiSun as Sun } from 'react-icons/fi';
-import useDarkMode from 'use-dark-mode';
 
 const StyledHeader = styled.header`
   height: 45px;
@@ -39,23 +38,21 @@ const StyledHeader = styled.header`
 
 const Header: React.FC<{
   title: string;
-}> = ({ title }) => {
-  const darkMode = useDarkMode(false);
-
-  return (
-    <StyledHeader className="secondary" style={{ height: '45px' }}>
-      <span className="header-title" onClick={() => navigate('/')}>
-        {title}
-      </span>
-      <span className="header-icon" onClick={() => darkMode.toggle()}>
-        {darkMode.value ? (
-          <Sun className="sun" style={{ width: '30px', height: '30px' }} />
-        ) : (
-          <Moon className="moon" style={{ width: '30px', height: '30px' }} />
-        )}
-      </span>
-    </StyledHeader>
-  );
-};
+  darkMode: boolean;
+  toggleDarkMode: () => void;
+}> = ({ title, darkMode, toggleDarkMode }) => (
+  <StyledHeader className="secondary" style={{ height: '45px' }}>
+    <span className="header-title" onClick={() => navigate('/')}>
+      {title}
+    </span>
+    <span className="header-icon" onClick={toggleDarkMode}>
+      {darkMode ? (
+        <Sun className="sun" style={{ width: '30px', height: '30px' }} />
+      ) : (
+        <Moon className="moon" style={{ width: '30px', height: '30px' }} />
+      )}
+    </span>
+  </StyledHeader>
+);
 
 export default Header;

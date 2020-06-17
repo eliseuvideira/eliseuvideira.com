@@ -3,6 +3,7 @@ import Header from './Header';
 import styled from 'styled-components';
 import Footer from './Footer';
 import Theme from '../Theme';
+import useDarkMode from 'use-dark-mode';
 
 const StyledLayout = styled.div`
   max-width: 960px;
@@ -21,18 +22,25 @@ const StyledLayout = styled.div`
   }
 `;
 
-const Layout: React.FC<PropsWithChildren<{}>> = ({ children }) => (
-  <>
-    <Theme />
-    <StyledLayout>
-      <div className="layout-container">
-        <Header title="eliseuvideira" />
-        {children}
-        <div className="layout-spacing" />
-      </div>
-      <Footer />
-    </StyledLayout>
-  </>
-);
+const Layout: React.FC<PropsWithChildren<{}>> = ({ children }) => {
+  const darkMode = useDarkMode(true);
+
+  return (
+    <Theme darkMode={darkMode.value}>
+      <StyledLayout>
+        <div className="layout-container">
+          <Header
+            title="eliseuvideira"
+            darkMode={darkMode.value}
+            toggleDarkMode={() => darkMode.toggle()}
+          />
+          {children}
+          <div className="layout-spacing" />
+        </div>
+        <Footer />
+      </StyledLayout>
+    </Theme>
+  );
+};
 
 export default Layout;

@@ -1,6 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import { createGlobalStyle } from 'styled-components';
-import useDarkMode from 'use-dark-mode';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
   html,
@@ -254,17 +253,14 @@ const dark = {
   isDark: true,
 };
 
-const Theme: React.FC<PropsWithChildren<{}>> = ({ children }) => {
-  const darkMode = useDarkMode(false);
-
-  const theme = darkMode.value ? dark : light;
-
-  return (
-    <>
-      <GlobalStyles theme={theme} />
-      {children}
-    </>
-  );
-};
+const Theme: React.FC<PropsWithChildren<{ darkMode: boolean }>> = ({
+  children,
+  darkMode,
+}) => (
+  <ThemeProvider theme={darkMode ? dark : light}>
+    <GlobalStyles />
+    {children}
+  </ThemeProvider>
+);
 
 export default Theme;
