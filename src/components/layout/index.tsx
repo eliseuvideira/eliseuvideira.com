@@ -1,8 +1,8 @@
 import React, { PropsWithChildren } from 'react';
-import Header from './Header';
+import Header from './layout-header';
 import styled from 'styled-components';
-import Footer from './Footer';
-import Theme from '../Theme';
+import Footer from './layout-footer';
+import Theme from './layout-theme';
 import useDarkMode from 'use-dark-mode';
 
 const StyledLayout = styled.div`

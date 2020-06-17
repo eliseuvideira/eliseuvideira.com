@@ -1,10 +1,10 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Layout from '../components/Layout/Layout';
+import Layout from '../components/layout';
 import styled from 'styled-components';
-import PostTitle from '../components/Posts/PostTitle';
-import Seo from '../components/Seo';
-import PrevNext from '../components/Posts/PrevNext';
+import PostTitle from '../components/post/post-title';
+import Seo from '../components/seo';
+import PrevNext from '../components/post/post-navigation';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 const PostContent = styled.div`

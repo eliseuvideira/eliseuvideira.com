@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import CopyButton from './CopyButton';
-import LanguageTag from './Badge';
-import FileName from './FileName';
+import CopyButton from './code-block-copy-button';
+import LanguageTag from './code-block-badge';
+import FileName from './code-block-filename';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 
 const Wrapper = styled.div`

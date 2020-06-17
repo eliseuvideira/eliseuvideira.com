@@ -1,6 +1,6 @@
 import React from 'react';
 import { MDXProvider } from '@mdx-js/react';
-import Code from './src/components/Code';
+import Code from './src/components/code-block';
 import { preToCodeBlock } from 'mdx-utils';
 
 export const wrapRootElement = (() => {

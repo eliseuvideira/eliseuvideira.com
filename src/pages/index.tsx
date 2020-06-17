@@ -1,8 +1,8 @@
 import React from 'react';
-import Layout from '../components/Layout/Layout';
+import Layout from '../components/layout';
 import { graphql } from 'gatsby';
-import Seo from '../components/Seo';
-import PostTitle from '../components/Posts/PostTitle';
+import Seo from '../components/seo';
+import PostTitle from '../components/post/post-title';
 
 interface Props {
   data: {
