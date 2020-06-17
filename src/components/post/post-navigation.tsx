@@ -45,11 +45,11 @@ const PrevNext: React.FC<Props> = ({ prev, next }) => (
           >
             <ArrowBack
               style={{
-                height: '1rem',
-                width: '1rem',
+                height: '18px',
+                width: '18px',
                 marginRight: '9px',
                 marginLeft: '-27px',
-              fontWeight: 600,
+                fontWeight: 600,
               }}
             />
             {prev.title}

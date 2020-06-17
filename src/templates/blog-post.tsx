@@ -37,6 +37,24 @@ interface PostProps {
   };
 }
 
+const HorizontalRule = styled.hr`
+  height: 40px;
+  margin: 30px 0 14px;
+  font-size: 28px;
+  letter-spacing: 16px;
+  font-weight: bolder;
+  text-align: center;
+  border: 0;
+  line-height: 12px;
+  background: transparent;
+
+  &::before {
+    content: '...';
+    top: 0;
+    line-height: 40px;
+  }
+`;
+
 const unique = (arr: string[]): string[] => [...(new Set(arr) as any)];
 
 const Post: React.FC<{
@@ -71,6 +89,7 @@ const Post: React.FC<{
     <PostContent className="text">
       <MDXRenderer>{body}</MDXRenderer>
     </PostContent>
+    <HorizontalRule className="text" />
     <PrevNext
       prev={
         prev
