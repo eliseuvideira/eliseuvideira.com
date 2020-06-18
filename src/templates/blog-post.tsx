@@ -4,7 +4,7 @@ import Layout from '../components/layout';
 import styled from 'styled-components';
 import PostTitle from '../components/post/post-title';
 import Seo from '../components/seo';
-import PrevNext from '../components/post/post-navigation';
+import PostNavigation from '../components/post/post-navigation';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 const PostContent = styled.div`
@@ -90,7 +90,7 @@ const Post: React.FC<{
       <MDXRenderer>{body}</MDXRenderer>
     </PostContent>
     <HorizontalRule className="text" />
-    <PrevNext
+    <PostNavigation
       prev={
         prev
           ? { link: `/posts${prev.fields.slug}`, title: prev.frontmatter.title }

@@ -2,25 +2,53 @@ import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 import {
-  MdArrowBack as ArrowBack,
-  MdArrowForward as ArrowForward,
+  MdArrowBack as ArrowLeft,
+  MdArrowForward as ArrowRight,
 } from 'react-icons/md';
 
 const Nav = styled.nav`
   margin-top: 60px;
-  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  .PrevNext__right {
-    text-align: right;
-  }
 `;
 
-const ItemTitle = styled.p`
+const NavItemLeft = styled.div`
+  width: 45%;
+`;
+
+const NavItemRight = styled.div`
+  text-align: right;
+  width: 45%;
+`;
+
+const NavItemLabel = styled.p`
+  color: ${({ theme }: any) => theme.textMuted};
   font-size: 0.8em;
   margin: 0;
+`;
+
+const NavItemPostTitle = styled.p`
+  color: ${({ theme }: any) => theme.primary};
+  display: inline-flex;
+  align-items: center;
+  font-weight: bold;
+  position: relative;
+
+  .arrow {
+    position: absolute;
+    height: 18px;
+    width: 18px;
+    font-weight: bold;
+  }
+
+  .arrow-left {
+    left: -27px;
+  }
+
+  .arrow-right {
+    right: -27px;
+  }
 `;
 
 interface Props {
@@ -28,62 +56,31 @@ interface Props {
   next?: { link: string; title: string } | null;
 }
 
-const PrevNext: React.FC<Props> = ({ prev, next }) => (
+const PostNavigation: React.FC<Props> = ({ prev, next }) => (
   <Nav>
-    <div className="navitem">
+    <NavItemLeft>
       {prev && (
         <Link to={prev.link}>
-          <ItemTitle className="text-muted">Previous</ItemTitle>
-          <div
-            className="primary"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              fontFamily: '"Futura PT", sans-serif',
-              fontWeight: 600,
-            }}
-          >
-            <ArrowBack
-              style={{
-                height: '18px',
-                width: '18px',
-                marginRight: '9px',
-                marginLeft: '-27px',
-                fontWeight: 600,
-              }}
-            />
+          <NavItemLabel>Previous</NavItemLabel>
+          <NavItemPostTitle>
+            <ArrowLeft className="arrow arrow-left" />
             {prev.title}
-          </div>
+          </NavItemPostTitle>
         </Link>
       )}
-    </div>
-    <div className="PrevNext__right">
+    </NavItemLeft>
+    <NavItemRight>
       {next && (
         <Link to={next.link}>
-          <ItemTitle className="text-muted">Next</ItemTitle>
-          <div
-            className="primary"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              fontFamily: '"Futura PT", sans-serif',
-              fontWeight: 600,
-            }}
-          >
+          <NavItemLabel>Next</NavItemLabel>
+          <NavItemPostTitle>
             {next.title}
-            <ArrowForward
-              style={{
-                height: '18px',
-                width: '18px',
-                marginLeft: '9px',
-                marginRight: '-27px',
-              }}
-            />
-          </div>
+            <ArrowRight className="arrow arrow-right" />
+          </NavItemPostTitle>
         </Link>
       )}
-    </div>
+    </NavItemRight>
   </Nav>
 );
 
-export default PrevNext;
+export default PostNavigation;
