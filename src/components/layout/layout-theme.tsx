@@ -20,6 +20,7 @@ const GlobalStyles = createGlobalStyle`
 
   body {
     background-color: ${({ theme }: any) => theme.background};
+    transition: background 0.2s linear;
   }
 
   .text {
