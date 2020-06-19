@@ -29,6 +29,14 @@ module.exports = {
       resolve: 'gatsby-plugin-mdx',
       options: {
         extensions: ['.mdx', '.md'],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 930,
+            },
+          },
+        ],
       },
     },
     'gatsby-remark-reading-time',
