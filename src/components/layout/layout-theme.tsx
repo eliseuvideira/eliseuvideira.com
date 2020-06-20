@@ -80,6 +80,7 @@ const GlobalStyles = createGlobalStyle`
       !isDark ? '1px solid #dddddd' : '1px solid rgba(128, 128, 128, 0.35)'};
     background-color: ${({ theme: { isDark } }: any) =>
       !isDark ? 'white' : '#1e1e1e'};
+    transition: background 0.2s linear;
   }
 
   .code-block-title {
@@ -89,6 +90,7 @@ const GlobalStyles = createGlobalStyle`
       !isDark ? 'white' : '#1e1e1e'};
     border-bottom-width: 0;
     color: ${({ theme: { isDark } }: any) => (!isDark ? '#393a34' : '#d4d4d4')};
+    transition: background 0.2s linear;
   }
 
   .code-block-copy-button {

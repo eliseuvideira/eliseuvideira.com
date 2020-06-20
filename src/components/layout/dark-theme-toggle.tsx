@@ -62,7 +62,7 @@ const DarkThemeToggle: React.FC<{
   onToggle: () => void;
 }> = ({ darkMode, onToggle }) => (
   <Wrapper>
-    <Checkbox checked={darkMode} onClick={onToggle} />
+    <Checkbox checked={darkMode} onChange={onToggle} />
     <Slider>
       <Sun color="#f1c40f" />
       <Moon color="#f1c40f" />

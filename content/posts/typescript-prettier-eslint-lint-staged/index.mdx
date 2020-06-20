@@ -1,0 +1,193 @@
+---
+title: TypeScript with prettier, eslint and lint-staged
+description: An easy guide to setup prettier, eslint and lint-staged for your javascript projects
+date: 2020-06-20T14:44:11.156Z
+tags: [javascript]
+keywords: [prettier, eslint, lint-staged, nodejs, javascript]
+---
+
+The following is a step-by-step guide on how to setup prettier, eslint and lint-staged for TypeScript projects.
+
+## prettier
+
+First we need to install the prettier package and add a <code>.prettierrc</code> in which we store our preferred configuration.
+
+```bash
+yarn add -D prettier
+touch .prettierrc
+```
+
+Now add the following configuration, you can change as you like. 
+
+```json filename=.prettierrc
+{
+  "arrowParens": "always",
+  "endOfLine": "lf",
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "all"
+}
+```
+
+The "endOfLine" and "trailingComma" helps avoiding git conflicts, so they should be preferred. 
+
+For "arrowParens", I think setting this option to true works best for TypeScript, since most of times you will be typying the parameter, which requires the parenthesis, so using it everywhere will make your code style more consistent.
+
+For the "semi" and "singleQuote" I tend to side with the code style I'm more familiar with, you can change as you like.
+
+Next add the following scripts to your package.json file, so that you can run a command to check and fix the code style of your files.
+
+```json filename=package.json
+{
+  "scripts": {
+    "format": "prettier --write \"**/*.{js,json,jsx,ts,tsx}\"",
+    "format-check": "prettier --check \"**/*.{js,json,jsx,ts,tsx}\""
+  }
+}
+```
+
+As an optional step, you can install the vscode extension for prettier. In the vscode editor, press Ctrl+P and then run the following command
+```plain
+ext install esbenp.prettier-vscode
+```
+
+And then enable auto-format on save by opening the settings json file
+
+```json
+{
+  "editor.formatOnSave": true
+}
+```
+
+## eslint
+
+For eslint to work with typescript, it requires an additional plugin and parser, so install all the packages and create a .eslintrc file at the root folder
+
+```bash
+yarn add -D eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser
+touch .eslintrc
+```
+
+The configuration for eslint depends on the type of project you are working with, I put bellow the ones I use the most for nodejs and react.
+
+#### nodejs
+```json filename=.eslintrc
+{
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+    ],
+    "@typescript-eslint/no-explicit-any": "off"
+  }
+}
+```
+
+#### react
+```json filename=.eslintrc
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/eslint-recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint"],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+    ],
+    "@typescript-eslint/no-explicit-any": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
+```
+
+In the ruling section I disable the check of explicit any and ignore unused variables and arguments if they starts with an underscore. 
+My reasoning behind is because using any removes the necessity to think before the fact how the data structure will be, I prefer to code then walk my way back to define the best data structure I can think of. 
+
+
+Next add a script command to your package json, to check all files when necessary.
+
+```json filename=package.json
+{
+  "scripts": {
+    "lint": "eslint 'src/**/*.{ts,tsx}'"
+  }
+}
+```
+
+As an optional step you can install the vscode extension for eslint, by pressing Ctrl+P and then running the following command
+```plain
+ext install dbaeumer.vscode-eslint
+```
+
+## lint-staged
+
+The final package we will be looking is lint-staged, which complements both prettier and eslint. This package basically lets you run prettier and eslint checks only in the staged files before commiting. If any of the checks fails, then the commit is aborted.
+
+To make lint-staged work as intended, we will need a <code>husky</code> hook to trigger lint-staged before <code>git commit</code>.
+
+First add the packages
+
+```bash
+yarn add -D husky lint-staged
+```
+
+Then add a "lint-staged" key to your <code>package.json</code> file with the following configuration
+
+```json package.json
+{
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint",
+      "prettier --check"
+    ]
+  }
+}
+```
+
+Then add a .huskyrc file to create a git commit hook
+
+```bash
+touch .huskyrc
+```
+
+Add the following configuration
+
+```json filename=.huskyrc
+{
+  "hooks": {
+    "pre-commit": "yarn lint-staged"
+  }
+}
+```
+
+That's it, once done, try staging files and then committing, you will see lint-staged running. If the linter throws an error, the commit is aborted, so that you can fix the problems and then re-staged the files.
