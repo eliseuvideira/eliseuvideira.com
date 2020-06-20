@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { navigate } from 'gatsby';
-import { FiMoon as Moon, FiSun as Sun } from 'react-icons/fi';
+import DarkThemeToggle from './dark-theme-toggle';
 
 const StyledHeader = styled.header`
   height: 45px;
@@ -10,6 +10,7 @@ const StyledHeader = styled.header`
   align-items: center;
 
   & .header-title {
+    border-width: 0;
     display: inline-block;
     font-family: monospace;
     font-size: 25px;
@@ -42,16 +43,10 @@ const Header: React.FC<{
   toggleDarkMode: () => void;
 }> = ({ title, darkMode, toggleDarkMode }) => (
   <StyledHeader className="secondary" style={{ height: '45px' }}>
-    <span className="header-title" onClick={() => navigate('/')}>
+    <h1 className="header-title" onClick={() => navigate('/')}>
       {title}
-    </span>
-    <span className="header-icon" onClick={toggleDarkMode}>
-      {darkMode ? (
-        <Sun className="sun" style={{ width: '30px', height: '30px' }} />
-      ) : (
-        <Moon className="moon" style={{ width: '30px', height: '30px' }} />
-      )}
-    </span>
+    </h1>
+    <DarkThemeToggle darkMode={darkMode} onToggle={toggleDarkMode} />
   </StyledHeader>
 );
 
