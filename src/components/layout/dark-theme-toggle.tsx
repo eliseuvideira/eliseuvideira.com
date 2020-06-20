@@ -47,12 +47,12 @@ const Slider = styled.span`
     background-color: #fafafa;
     border-radius: 50%;
 
-    ${Checkbox} + & {
-      box-shadow: 0 0 5px 5px ${({ theme: { primary } }) => primary};
-    }
-
     ${Checkbox}:checked + & {
       transform: translateX(20px);
+    }
+
+    ${Wrapper}:hover & {
+      box-shadow: 0 0 4px 4px #79cd75;
     }
   }
 `;
@@ -60,16 +60,14 @@ const Slider = styled.span`
 const DarkThemeToggle: React.FC<{
   darkMode: boolean;
   onToggle: () => void;
-}> = ({ darkMode, onToggle }) => {
-  return (
-    <Wrapper>
-      <Checkbox checked={darkMode} onClick={onToggle} />
-      <Slider>
-        <Sun color="#f1c40f" />
-        <Moon color="#f1c40f" />
-      </Slider>
-    </Wrapper>
-  );
-};
+}> = ({ darkMode, onToggle }) => (
+  <Wrapper>
+    <Checkbox checked={darkMode} onClick={onToggle} />
+    <Slider>
+      <Sun color="#f1c40f" />
+      <Moon color="#f1c40f" />
+    </Slider>
+  </Wrapper>
+);
 
 export default DarkThemeToggle;
