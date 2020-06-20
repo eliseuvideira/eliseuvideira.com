@@ -34,14 +34,6 @@ const Slider = styled.span`
   cursor: pointer;
   border-radius: 50px;
 
-  ${Checkbox}:checked + & {
-    /* background-color: #3b97d3; */
-  }
-
-  ${Checkbox}:focus + & {
-    /* box-shadow: 0 0 1px #3b97d3; */
-  }
-
   &:before {
     position: absolute;
     content: '';
