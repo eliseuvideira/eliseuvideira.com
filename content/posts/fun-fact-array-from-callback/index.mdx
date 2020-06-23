@@ -1,0 +1,91 @@
+---
+title: Fun Fact - Array.from callback
+description: A fun fact about javascript, an alternative way of mapping
+date: 2020-06-23T12:50:57.542Z
+tags: [javascript]
+keywords: [javascript, nodejs, array, Array.from, map]
+---
+
+The <code>Array.from</code> function is pretty useful to convert array like structures in a proper array, 
+I think the most used case is converting a list of HTML elements to array.
+
+Take this example:
+
+```js
+const titleElements = document.querySelectorAll('h1');
+
+const titles = Array.from(titleElements).map(element => element.textContent);
+```
+
+This example extracts the content of <code>h1</code> tags from a html page.
+
+That's nice, but there's a way to improve this code by making use of a lesser known feature, the callback we can pass to <code>Array.from</code>
+allow us to change the content of each element in the soon to be array, the same thing the <code>map</code> method is doing.
+
+This is a rewrite of the previous snippet
+
+```js
+const titleElements = document.querySelectorAll('h1');
+
+const titles = Array.from(titleElements, element => element.textContent);
+```
+
+Now we eliminated the need for <code>.map</code>, since <code>Array.from</code> alone accomplishes the same desired output.
+
+We can also replace <code>.map</code> access in an array for <code>Array.from</code>.
+
+Take this example, you have an array of cart products and want to find out the most expensive price in the list
+
+```js
+const products = [
+  {
+    productId: 3604356263131261,
+    productName: 'Desk',
+    productPrice: 413.2,
+  },
+  {
+    productId: 5445735849133131,
+    productName: 'Chair',
+    productPrice: 253.17,
+  },
+  .
+  .
+  .
+];
+
+const mostExpensive = Math.max(
+  ...products.map(product => product.productPrice),
+);
+
+console.log(mostExpensive);
+```
+
+In this example we create a new array with the prices, and then destructure it and pass to the Math.max function, to get the highest price.
+
+We can do pretty much the same using <code>Array.from</code>.
+
+```js
+const mostExpensive = Math.max(
+  ...Array.from(products, product => product.productPrice),
+);
+
+console.log(mostExpensive);
+```
+
+The callback for both <code>Array.from</code> and <code>Array.prototype.map</code> is pretty similar, 
+except that you don't get access to the full array in the <code>Array.from</code>.
+
+We can verify this by logging the parameters received.
+
+```js
+// Array.prototype.map
+products.map((...args) => console.log(args));
+
+// Array.from
+Array.from(products, (...args) => console.log(args));
+```
+
+The <code>Array.prototype.map</code> one will receive three parameters, the current item, the index and the full array.
+The <code>Array.from</code> callback has no access to the full array.
+
+That's it, remember to make use of the <code>Array.from</code> callback from now on.
