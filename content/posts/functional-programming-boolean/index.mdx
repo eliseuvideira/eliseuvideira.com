@@ -1,0 +1,396 @@
+---
+title: Functional Programming Boolean
+description: How to arrive at booleans and boolean operators using functions as primitives
+date: 2020-06-24T17:48:12.981Z
+tags: [javascript, functional programming]
+keywords: [javascript, functional programming, boolean, operators, not, and, or, xor]
+---
+
+The other day I was solving some katas at codewars when I confronted a really good one.
+
+This is the kata if you are interested. https://www.codewars.com/kata/5ac739ed3fdf73d3f0000048
+
+The whole premise of this kata is to arrive at boolean operators (<code>Not</code>, <code>And</code>, <code>Or</code> and <code>Xor</code>) using only functions as the primitives.
+
+The kata gives you the structure of the functions, you just need to fill the return statements.
+
+```js
+const True = x => y => x;
+
+const False = x => y => y;
+
+const Not = x => null;
+
+const And = x => y => null;
+
+const Or = x => y => null;
+
+const Xor = x => y => null;
+```
+
+The thing that makes this exercise interesting is that you are not allowed to make use of any built-in language operators, 
+you need to deduce them from scratch, in this case from the functions <code>True</code> and <code>False</code>.
+
+By the function definitions we see that both <code>True</code> and <code>False</code> are using currying and recieve two parameters.
+
+<code>True</code> just returns the first parameters and ignores the second, <code>False</code> does the contrary, it ignores the first one
+and returns the second as recieved. The parameters are supposed to be either <code>True</code> or <code>False</code>. 
+
+We need to make use of this knowledge to obtain the boolean operators.
+
+### Not
+
+To obtain <code>Not</code> we need to be able to transform <code>True</code> into <code>False</code> and <code>False</code>
+into <code>True</code> by using the function definition.
+
+```js
+const Not = x => null;
+```
+
+In this snippet, <code>x</code> is either True or False, we need to reverse it's value, in a way that works both ways.
+
+Let's suppose <code>x</code> is <code>True</code>, to reverse it's value we just need to return <code>False</code>.
+
+```js
+const Not1 = x => False;
+```
+
+Now if <code>x</code> is <code>False</code>, we just need to return <code>True</code>.
+
+```js
+const Not2 = x => True;
+```
+
+To combine both conditions into one, we need to move our current definitions to depend on the values of <code>x</code>, 
+which can be <code>True</code> and <code>False</code>
+
+```js
+// x -> True
+const Not1 = x => x(False)(null);
+
+console.log(Not1(True) === False); // true
+
+// x -> False
+const Not2 = x => x(null)(True);
+
+console.log(Not2(False) === True); // true
+```
+
+Now we can safely combine both definitions into one:
+
+```js
+// const Not1 = x => x(False)(null);
+
+// const Not2 = x => x(null)(True);
+
+const Not = x => x(False)(True);
+
+console.log(Not(True) === False); // true
+
+console.log(Not(False) === True); // true
+```
+
+By looking at the output we can see that we correctly transformed <code>True</code> into <code>False</code>.
+
+### And
+
+Now let's take a look at the <code>And</code> operator, the idea behind this operator, as you are already aware of, 
+is to return <code>True</code> only in the case that both parameters are <code>True</code>.
+
+The definition provided so far is this, we need to fix the return value.
+
+```js
+const And = x => y => null;
+```
+
+Suppose for a moment that <code>x</code> is always <code>True</code>.
+
+If <code>x</code> is always <code>True</code>, to make the <code>And</code> function work as intended, we need to
+return <code>True</code> when y is <code>True</code>, and <code>False</code> otherwise. The simplest way to express this is the following:
+
+```js
+const And1 = x => y => y;
+
+console.log(And1(True)(True) === True); // true
+
+console.log(And1(True)(False) === False); // true
+```
+
+Now let's imagine that <code>x</code> is always <code>False</code>. 
+
+```js
+const And2 = x => y => False;
+
+console.log(And2(False)(True) === False); // true
+
+console.log(And2(False)(False) === False); // true
+```
+
+To combine both definitions we need to make <code>And2</code> depend on the value of <code>y</code>.
+
+```js
+const And2 = x => y => False(y)(False);
+```
+
+Since the value of <code>x</code> in this case is always <code>False</code>, we can replace for this definition:
+
+```js
+const And2 = x => y => x(y)(False);
+```
+
+Let's now revisit the <code>And1</code> definition, and make it depend on <code>True</code>, 
+we are making this step to later replace <code>True</code> with <code>x</code>.
+
+```js
+const And1 = x => y => True(y)(null);
+```
+
+Now replace <code>True</code> with <code>x</code>.
+
+```js
+const And1 = x => y => x(y)(null);
+```
+
+Combining both definition at this point is easier, keep in mind that we can put anything to replace <code>null</code> value. 
+
+So we arrive at:
+
+```js
+// const And1 = x => y => x(y)(null);
+
+// const And2 = x => y => x(y)(False);
+
+const And = x => y => x(y)(False);
+
+console.log(And(True)(True) === True); // true
+
+console.log(And(True)(False) === False); // true
+
+console.log(And(False)(True) === False); // true
+
+console.log(And(False)(False) === False); // true
+```
+
+Observing the logs we can verify that we arrived at the correct definition of <code>And</code>.
+
+### Or
+
+Next in the line is the <code>Or</code> operator.
+We need to return <code>True</code> if any of the parameters are <code>True</code>, and return <code>False</code> only if both are <code>False</code>.
+
+```js
+const Or = x => y => null;
+```
+
+If we make the same assumption we did previously, that <code>x</code> is always <code>True</code>, we just need to return <code>True</code>, whatever the value of <code>y</code>.
+
+```js
+const Or1 = x => y => True;
+
+console.log(Or1(True)(True) === True); // true
+
+console.log(Or1(True)(False) === True); // true
+```
+
+Now for the reverse situation, in which <code>x</code> is always <code>False</code>, 
+we need to check if <code>y</code> is <code>True</code> to return <code>True</code>, and <code>False</code> otherwise.
+
+```js
+const Or2 = x => y => y;
+
+console.log(Or2(False)(True) === True); // true
+
+console.log(Or2(False)(False) === False); // true
+```
+
+To combine both definitions, we need to make the second (<code>Or2</code>) depend on <code>False</code>, to replace later with the value of <code>x</code>.
+
+```js
+const Or2 = x => y => False(null)(y);
+
+console.log(Or2(False)(True) === True); // true
+
+console.log(Or2(False)(False) === False); // true
+```
+
+Since we know that <code>x</code> is always <code>False</code> for this case, we can replace for this definition:
+
+```js
+const Or2 = x => y => x(null)(y);
+```
+
+Let's do the same with <code>Or1</code>, but using <code>True</code> instead of <code>False</code>:
+
+```js
+// const Or1 = x => y => True;
+const Or1 = x => y => True(True)(y);
+```
+
+Then replace <code>True</code> with <code>x</code>.
+
+```js
+const Or1 = x => y => x(True)(y);
+```
+
+Combining both definitions we reach the following.
+
+```js
+// const Or1 = x => y => x(True)(y);
+
+// const Or2 = x => y => x(null)(y);
+
+const Or = x => y => x(x)(y);
+
+console.log(Or(True)(True) === True); // true
+
+console.log(Or(True)(False) === True); // true
+
+console.log(Or(False)(True) === True); // true
+
+console.log(Or(False)(False) === False); // true
+```
+
+Looking to the console we can verify that the definition we reached is a correct one.
+
+### Xor
+
+<code>Xor</code> is the exclusive <code>Or</code>, it should return <code>True</code> only if the values of <code>x</code> and <code>y</code> are different.
+
+```js
+const Xor = x => y => null;
+```
+
+Let's continue with our method of setting <code>x</code> as True, in this case, if <code>y</code> is True we should return <code>False</code>, 
+and in the case that its <code>False</code>, we should return <code>True</code>.
+
+If that sounded familiar, its because is the same as the <code>Not</code> operator we did earlier. So we can reuse <code>Not</code> here.
+
+```js
+const Xor1 = x => y => Not(y);
+
+console.log(Xor1(True)(True) === False); // true
+
+console.log(Xor1(True)(False) === True); // true
+```
+
+Now for <code>x</code> being <code>False</code>.
+
+When <code>y</code> is <code>True</code>, return <code>True</code>, when <code>False</code>, <code>False</code>.
+We can just replace this with the value of <code>y</code> then.
+
+```js
+const Xor2 = x => y => y;
+
+console.log(Xor2(False)(True) === True); // true
+
+console.log(Xor2(False)(False) === False); // true
+```
+
+To conciliate our answers we could change the first one to depend on True
+
+```js
+const Xor1 = x => y => True(Not(y))(null);
+```
+
+Now replace <code>True</code> with <code>x</code>.
+
+```js
+const Xor1 = x => y => x(Not(y))(null);
+```
+
+Let's make <code>Xor1</code> depend on <code>False</code>.
+
+```js
+const Xor2 = x => y => False(null)(y);
+```
+
+Then replace <code>False</code> with <code>x</code>.
+```js
+const Xor2 = x => y => x(null)(y);
+```
+
+Now we can combine both definitions.
+
+```js
+// const Xor1 = x => y => x(Not(y))(null);
+
+// const Xor2 = x => y => x(null)(y);
+
+const Xor = x => y => x(Not(y))(y);
+
+console.log(Xor(True)(True) === False); // true
+
+console.log(Xor(True)(False) === True); // true
+
+console.log(Xor(False)(True) === True); // true
+
+console.log(Xor(False)(False) === False); // true
+```
+
+Looking to the console values, we verify that the <code>Xor</code> operator works expected.
+
+### Conclusion
+
+That's it, now we have fully functional boolean operators using only functions as primitives, 
+its interesting that I never really tought that deep on how the boolean operators work behind the scenes,
+I always took them for granted. 
+
+The full code is as follows:
+
+```js filename=Boolean.js
+export const True = x => y => x;
+
+export const False = x => y => y;
+
+export const Not = x => x(False)(True);
+
+export const And = x => y => x(y)(False);
+
+export const Or = x => y => x(x)(y);
+
+export const Xor = x => y => x(Not(y))(y);
+```
+
+And the test cases:
+
+```js filename=Boolean.test.js
+import { True, False, Not, And, Or, Xor } from './Boolean';
+
+describe('Not', () => {
+  it('works', () => {
+    expect.assertions(2);
+    expect(Not(True)).toBe(False);
+    expect(Not(False)).toBe(True);
+  });
+});
+
+describe('And', () => {
+  it('works', () => {
+    expect.assertions(4);
+    expect(And(True)(True)).toBe(True);
+    expect(And(True)(False)).toBe(False);
+    expect(And(False)(True)).toBe(False);
+    expect(And(False)(False)).toBe(False);
+  });
+});
+
+describe('Or', () => {
+  it('works', () => {
+    expect.assertions(4);
+    expect(Or(True)(True)).toBe(True);
+    expect(Or(True)(False)).toBe(True);
+    expect(Or(False)(True)).toBe(True);
+    expect(Or(False)(False)).toBe(False);
+  });
+});
+
+describe('Xor', () => {
+  it('works', () => {
+    expect.assertions(4);
+    expect(Xor(True)(True)).toBe(False);
+    expect(Xor(True)(False)).toBe(True);
+    expect(Xor(False)(True)).toBe(True);
+    expect(Xor(False)(False)).toBe(False);
+  });
+});
+```
